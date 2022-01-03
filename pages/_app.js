@@ -1,7 +1,9 @@
+import '../styles/globals.scss'
 import {useState, useEffect} from "react";
 import Link from 'next/link';
 import {supabase} from "../supabase";
 import {useRouter} from "next/router";
+import Layout from "../components/Layout";
 
 function MyApp({Component, pageProps}) {
     const [authenticatedState, setAuthenticatedState] = useState(false)
@@ -41,39 +43,9 @@ function MyApp({Component, pageProps}) {
     }
 
     return (
-        <div>
-            <nav>
-                <ul>
-                    <li>
-                        <Link href="/">
-                            <a>Home</a>
-                        </Link>
-                    </li>
-
-                    {!authenticatedState ?
-                        <li>
-                            <Link href="/sign-up">
-                                <a>Sign Up</a>
-                            </Link>
-                        </li>
-                        :
-                        <>
-                            <li>
-                                <Link href="/profile">
-                                    <a>Profile</a>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/watchlist">
-                                    <a>Watchlist</a>
-                                </Link>
-                            </li>
-                        </>
-                    }
-                </ul>
-            </nav>
+        <Layout authenticatedState={authenticatedState}>
             <Component {...pageProps} />
-        </div>
+        </Layout>
     )
 }
 
