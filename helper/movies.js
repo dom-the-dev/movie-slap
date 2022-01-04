@@ -35,3 +35,13 @@ export const fetchRandomMovies = async () => {
 
     return data.results
 }
+
+export const fetchMovie = async (id) => {
+    const {data} = await axios.get(`${MOVIE_API}/movie/${id}`, {
+        params: {
+            api_key: process.env.NEXT_PUBLIC_MOVIE_API_KEY
+        }
+    })
+
+    return data
+}
