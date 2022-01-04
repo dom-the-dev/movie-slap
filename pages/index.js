@@ -1,29 +1,35 @@
 import {useEffect, useState} from "react";
-import {fetchPopularMovies} from "../helper/movies";
+import {fetchTrending} from "../helper/movies";
 import MovieCard from "../components/MovieCard";
 
 export default function Home() {
     const [movies, setMovies] = useState([])
-    const [page, setPage] = useState(1)
-    const [maxPage, setMaxPage] = useState(null)
+    const [series, setSeries] = useState([])
 
     useEffect(() => {
-        fetchMovies()
+        fetch(1, "movie")
+        fetch(1, "tv")
     }, [])
 
 
-    async function fetchMovies(nextPage = 1) {
-        const {movies, pages, page} = await fetchPopularMovies(nextPage)
-        setMovies(movies)
-        setPage(page)
-        setMaxPage(pages)
+    async function fetch(nextPage = 1, type) {
+        const {movies, pages, page} = await fetchTrending(nextPage, type)
+
+        if (type === "movie") {
+            setMovies(movies)
+        }
+
+        if (type === "tv") {
+            setSeries(movies)
+        }
+
     }
 
-    const renderMovies = () => (
-        movies.map(movie => (
+    const renderMovies = (data) => {
+        return data.slice(0,10).map(movie => (
             <MovieCard key={movie.id} movie={movie}/>
         ))
-    )
+    }
 
     return (
         <div>
@@ -32,24 +38,13 @@ export default function Home() {
             </h1>
 
             <h2>Trending Movies</h2>
-            <div className="container mx-auto grid grid-cols-4 md:grid-cols-6 lg:grid-cols-10 gap-3">
-                {renderMovies()}
+            <div className="container mx-auto grid grid-cols-4 md:grid-cols-6 lg:grid-cols-5 gap-3">
+                {renderMovies(movies)}
             </div>
 
-            <div>
-                <button className={`bg-brand ${page <= 1 ? "bg-gray-200 text-gray-500" : ""}`}
-                        disabled={page <= 1}
-                        onClick={async () => await fetchMovies(page - 1)}
-                >
-                    Prev Movies
-                </button>
-
-                <button className={`bg-brand ${page >= maxPage ? "bg-gray-200 text-gray-500" : ""}`}
-                        disabled={page >= maxPage}
-                        onClick={async () => await fetchMovies(page + 1)}
-                >
-                    Next Next Movies
-                </button>
+            <h2>Trending Series</h2>
+            <div className="container mx-auto grid grid-cols-4 md:grid-cols-6 lg:grid-cols-5 gap-3">
+                {renderMovies(series)}
             </div>
         </div>
     )
