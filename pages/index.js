@@ -3,7 +3,6 @@ import {fetchPopularMovies} from "../helper/movies";
 import MovieCard from "../components/MovieCard";
 
 export default function Home() {
-
     const [movies, setMovies] = useState([])
     const [page, setPage] = useState(1)
     const [maxPage, setMaxPage] = useState(null)
@@ -28,7 +27,7 @@ export default function Home() {
 
     return (
         <div>
-            <h1 className="text-3xl font-bold underline">
+            <h1>
                 Welcome to Movie Slap
             </h1>
 

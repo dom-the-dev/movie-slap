@@ -27,9 +27,9 @@ export async function fetchPopularMovies(page = 1) {
 
 
 export const fetchRandomMovies = async () => {
-    const {data} = await axios.get(`https://api.themoviedb.org/3/discover/movie`, {
+    const {data} = await axios.get(`${MOVIE_API}/discover/movie`, {
         params: {
-            api_key: process.env.REACT_APP_MOVIE_API_KEY,
+            api_key: process.env.NEXT_PUBLIC_MOVIE_API_KEY,
             page: Math.random() * 501
         }
     })

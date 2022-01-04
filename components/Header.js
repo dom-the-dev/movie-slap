@@ -8,32 +8,60 @@ const Header = ({authenticatedState}) => {
                 <ul>
                     <li>
                         <Link href="/">
-                            <a>Home</a>
+                            <a>
+                                Home
+                            </a>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link href="/styleguide">
+                            <a>
+                                Styleguide
+                            </a>
                         </Link>
                     </li>
 
                     {!authenticatedState ?
                         <li>
                             <Link href="/sign-up">
-                                <a>Sign Up</a>
+                                <a>
+                                    Sign Up
+                                </a>
                             </Link>
                         </li>
                         :
                         <>
+                        <li>
+                            Account
+                            <ul className={""}>
+                                <li>
+                                    <Link href="/profile">
+                                        <a>
+                                            Profile
+                                        </a>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href="/watchlist">
+                                        <a>
+                                            Watchlist
+                                        </a>
+                                    </Link>
+                                </li>
+                            </ul>
+                        </li>
                             <li>
-                                <Link href="/profile">
-                                    <a>Profile</a>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href="/watchlist">
-                                    <a>Watchlist</a>
+                                <Link href="/movie-slap">
+                                    <a>
+                                        Slap
+                                    </a>
                                 </Link>
                             </li>
                         </>
                     }
                 </ul>
             </nav>
+
         </header>
     );
 };

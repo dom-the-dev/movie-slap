@@ -32,11 +32,12 @@ const SignUp = () => {
             <h1>Sign Up</h1>
 
             <input
+                className={`border-2`}
                 type="text"
                 onChange={e => setEmail(e.target.value)}
             />
 
-            <button onClick={signIn}>Sign In</button>
+            <button onClick={signIn}>Send</button>
         </div>
     );
 };
