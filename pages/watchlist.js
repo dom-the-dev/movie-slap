@@ -66,10 +66,10 @@ const Watchlist = ({user}) => {
             <div key={movie.id}>
                 <MovieCard movie={movie}/>
                 <div className={"button-wrapper"}>
-                    <button className={"button button--secondary"}
+                    <button className={"primary w-full my-1"}
                             onClick={() => handleWatched(movie.id, !movie.watched)}>{`${!movie.watched ? "Mark as Watched" : "Unwatch"}`}
                     </button>
-                    <button className={"button"} onClick={() => handleDeleteFromWatchlist(movie.id)}>Delete from
+                    <button className={"secondary w-full my-1"} onClick={() => handleDeleteFromWatchlist(movie.id)}>Delete from
                         Watch List
                     </button>
                 </div>
