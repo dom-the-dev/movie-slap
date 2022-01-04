@@ -3,10 +3,11 @@ import {supabase} from "../supabase";
 import {getWatchList, updateWatchlistMovie, deleteFromWatchlist} from "../helper/watchlist";
 import {fetchMovie} from "../helper/movies";
 import MovieCard from "../components/MovieCard";
+import Message from "../components/Message";
 
 const Watchlist = ({user}) => {
     const [watchList, setWatchList] = useState([])
-    const [message, setMessage] = useState("")
+    const [message, setMessage] = useState({type: "", message: ""})
 
     useEffect(() => {
         fetchMovies()
@@ -36,7 +37,17 @@ const Watchlist = ({user}) => {
 
         if (res.data) {
             fetchMovies()
-            setMessage(watched ? 'Marked as watched' : 'Unwatched')
+            let msg = message
+
+            if (watched) {
+                msg.message = "Marked as watched"
+                msg.type = "success"
+            } else {
+                msg.message = "Unwatched"
+                msg.type = "warning"
+
+            }
+            setMessage(msg)
         }
     }
 
@@ -68,7 +79,7 @@ const Watchlist = ({user}) => {
 
     return (
         <div>
-            {message}
+            {message.message && <Message message={message.message} type={message.type}/>}
             <h1>Your watchlist</h1>
             <div className="container mx-auto grid grid-cols-4 md:grid-cols-6 lg:grid-cols-5 gap-3">
                 {renderWatchlist()}
