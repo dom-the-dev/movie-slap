@@ -7,7 +7,9 @@ const MovieCard = ({movie}) => {
                 <img
                     width={"100%"}
                     src={`${IMAGE_PATH}/${movie.poster_path}`}
-                    alt={`${title} cover`}/>
+                    alt={`${title} cover`}
+                    className={`rounded`}
+                />
                 : <div className={"h-72 bg-brand"}>
                     No image
                 </div>}

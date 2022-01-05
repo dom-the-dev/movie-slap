@@ -24,6 +24,27 @@ export async function fetchTrending(page = 1, type = "movie") {
     }
 }
 
+export async function searchMovies(page = 1, type = "movie", query) {
+    try {
+
+        const {data} = await axios.get(`${MOVIE_API}/search/${type}`, {
+            params: {
+                api_key: process.env.NEXT_PUBLIC_MOVIE_API_KEY,
+                query: query
+            },
+        })
+
+        return {
+            movies: data.results,
+            pages: data.total_pages,
+            page: data.page
+        }
+
+    } catch (e) {
+        console.error(e)
+    }
+}
+
 
 export const fetchRandomMovies = async () => {
     const {data} = await axios.get(`${MOVIE_API}/discover/movie`, {

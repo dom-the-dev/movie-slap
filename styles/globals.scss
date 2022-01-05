@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  body {
+    @apply bg-gray-100;
+  }
+
   h1, h2, h3, h4, h5 {
     @apply tracking-wider;
   }
@@ -28,19 +32,23 @@
   }
 
   button {
-    @apply px-5 py-0.5 font-bold tracking-wider;
+    @apply px-5 py-0.5 font-bold tracking-wider rounded border-2 border-brand;
   }
 
   button.primary {
-    @apply bg-brand rounded text-white;
+    @apply bg-brand text-white;
   }
 
   button.secondary {
-    @apply border-brand border-2 rounded text-dark;
+    @apply text-dark;
   }
 
-  input.input {
+  input[type="text"] {
     @apply border rounded px-2;
+  }
+
+  nav ul li {
+    @apply p-2 cursor-pointer hover:text-brand
   }
 }
 

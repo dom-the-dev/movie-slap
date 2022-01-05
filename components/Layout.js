@@ -14,7 +14,7 @@ const Layout = ({children, authenticatedState}) => {
 
             <Header authenticatedState={authenticatedState}/>
 
-            <main>
+            <main className={`mx-auto container`}>
                 {children}
             </main>
 
