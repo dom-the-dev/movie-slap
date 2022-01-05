@@ -13,7 +13,7 @@ const Message = ({message, type}) => {
         default: style = style = error;
     }
     return (
-        <div className={`block border p-5 rounded font-bold  ${style}`}>
+        <div className={`mb-10 block border p-5 rounded font-bold  ${style}`}>
             {message}
         </div>
     );

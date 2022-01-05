@@ -9,6 +9,7 @@ const Header = ({authenticatedState}) => {
                     <Link href="/">
                         <a>Movie Slap</a>
                     </Link>
+                    <span className={`text-white font-light`}>{" "}beta</span>
                 </div>
                 <nav className={`py-2 tracking-wider font-bold`}>
                     <ul className={`flex text-white`}>
