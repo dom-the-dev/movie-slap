@@ -50,10 +50,6 @@
   input[type="text"] {
     @apply border rounded px-2;
   }
-
-  nav ul li {
-    @apply p-2 cursor-pointer hover:text-brand
-  }
 }
 
 p {

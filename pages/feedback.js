@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import axios from "axios";
 import Message from "../components/Message";
+import SimpleHeader from "../components/SimpleHeader";
 
 const Feedback = () => {
     const [status, setStatus] = useState("")
@@ -34,10 +35,11 @@ const Feedback = () => {
     };
 
     return (
-        <div className={`min-h-screen text-center pt-14`}>
+        <div>
             {status && <Message message={status} type={"success"}/>}
 
-            <h1>Feedback</h1>
+            <SimpleHeader text={"Feedback"}/>
+
             {submitting && <div>is submitting</div>}
             <div className={`max-w-xl mx-auto`}>
                 <form onSubmit={handleOnSubmit}>

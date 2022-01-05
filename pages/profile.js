@@ -2,10 +2,10 @@ import {useEffect, useState} from "react";
 import {supabase} from "../supabase";
 import {useRouter} from "next/router";
 import Image from "next/image";
+import SimpleHeader from "../components/SimpleHeader";
 
 
 const Profile = ({user}) => {
-    const router = useRouter()
     const [website, setWebsite] = useState("");
     const [username, setUsername] = useState("");
     const [avatarUrl, setAvatarUrl] = useState("");
@@ -33,10 +33,6 @@ const Profile = ({user}) => {
         }
     }
 
-    async function signOut() {
-        await supabase.auth.signOut()
-        router.push('/sign-up')
-    }
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -81,6 +77,8 @@ const Profile = ({user}) => {
 
     return (
         <div>
+            <SimpleHeader text={"Feedback"}/>
+
             <form onSubmit={handleSubmit} className={"form-wrapper"}>
 
                 {avatarUrl ?
@@ -132,11 +130,9 @@ const Profile = ({user}) => {
                 </div>
 
                 <div className="form-group">
-                    <button className={"button button--fluid"} type={"submit"}>Save Profile</button>
+                    <button className={"primary button button--fluid"} type={"submit"}>Save Profile</button>
                 </div>
             </form>
-
-            <button onClick={signOut}>Sign out</button>
         </div>
     );
 };

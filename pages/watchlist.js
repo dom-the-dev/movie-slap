@@ -4,6 +4,7 @@ import {getWatchList, updateWatchlistMovie, deleteFromWatchlist} from "../helper
 import {fetchMovie} from "../helper/movies";
 import MovieCard from "../components/MovieCard";
 import Message from "../components/Message";
+import SimpleHeader from "../components/SimpleHeader";
 
 const Watchlist = ({user}) => {
     const [watchList, setWatchList] = useState([])
@@ -69,7 +70,8 @@ const Watchlist = ({user}) => {
                     <button className={"primary w-full my-1"}
                             onClick={() => handleWatched(movie.id, !movie.watched)}>{`${!movie.watched ? "Mark as Watched" : "Unwatch"}`}
                     </button>
-                    <button className={"secondary w-full my-1"} onClick={() => handleDeleteFromWatchlist(movie.id)}>Delete from
+                    <button className={"secondary w-full my-1"}
+                            onClick={() => handleDeleteFromWatchlist(movie.id)}>Delete from
                         Watch List
                     </button>
                 </div>
@@ -80,7 +82,7 @@ const Watchlist = ({user}) => {
     return (
         <div>
             {message.message && <Message message={message.message} type={message.type}/>}
-            <h1>Your watchlist</h1>
+            <SimpleHeader text={"Your Watchlist"}/>
             <div className="container mx-auto grid grid-cols-4 md:grid-cols-6 lg:grid-cols-5 gap-3">
                 {renderWatchlist()}
             </div>

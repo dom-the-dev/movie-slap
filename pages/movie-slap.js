@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import {supabase} from "../supabase";
 import {fetchRandomMovies} from "../helper/movies";
+import SimpleHeader from "../components/SimpleHeader";
 
 const MovieSlap = () => {
     const [movies, setMovies] = useState([])
@@ -19,7 +20,7 @@ const MovieSlap = () => {
 
     return (
         <div>
-            <h1>Slap your Movies</h1>
+            <SimpleHeader text={"Slap your Movies"}/>
         </div>
     );
 };
