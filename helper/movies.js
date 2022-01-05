@@ -9,7 +9,8 @@ export async function fetchTrending(page = 1, type = "movie") {
 
         const {data} = await axios.get(`${MOVIE_API}/trending/${type}/week`, {
             params: {
-                api_key: process.env.NEXT_PUBLIC_MOVIE_API_KEY
+                api_key: process.env.NEXT_PUBLIC_MOVIE_API_KEY,
+                page
             }
         })
 
@@ -30,7 +31,8 @@ export async function searchMovies(page = 1, type = "movie", query) {
         const {data} = await axios.get(`${MOVIE_API}/search/${type}`, {
             params: {
                 api_key: process.env.NEXT_PUBLIC_MOVIE_API_KEY,
-                query: query
+                query,
+                page
             },
         })
 

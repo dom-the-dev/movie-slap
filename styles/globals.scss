@@ -32,7 +32,7 @@
   }
 
   button {
-    @apply px-5 py-0.5 font-bold tracking-wider rounded border-2 border-brand;
+    @apply px-5 py-0.5 font-bold tracking-wider rounded border-2 border-brand cursor-pointer;
   }
 
   button.primary {
@@ -41,6 +41,10 @@
 
   button.secondary {
     @apply text-dark;
+  }
+
+  button[disabled] {
+    @apply bg-gray-400 border-gray-400;
   }
 
   input[type="text"] {

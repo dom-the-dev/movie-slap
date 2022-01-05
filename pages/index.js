@@ -11,7 +11,7 @@ export default function Home() {
     const [maxPage, setMaxPage] = useState(null)
 
     useEffect(() => {
-            fetchMovies(1, type)
+        fetchMovies(1, type)
     }, [type])
 
 
@@ -83,6 +83,24 @@ export default function Home() {
 
             <div className="container mx-auto grid grid-cols-2 sm:grid-cols-5  gap-3">
                 {renderMovies(movies)}
+            </div>
+
+            <div className={`flex justify-center my-10`}>
+                <button
+                    disabled={page <= 1}
+                    className={`primary mx-2`}
+                    onClick={() => fetchMovies(page - 1)}
+                >
+                    prev
+                </button>
+
+                <button
+                    disabled={page >= maxPage}
+                    className={`primary mx-2`}
+                    onClick={() => fetchMovies(page + 1)}
+                >
+                    next
+                </button>
             </div>
 
         </div>
