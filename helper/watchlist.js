@@ -37,3 +37,24 @@ export const deleteFromWatchlist = async (id, movieId) => {
 
     return {data, error}
 }
+
+
+export const addToWatchlist = async (id, movieId, watched, liked, title) => {
+    const {data, error} = await supabase
+        .from('watchlists')
+        .insert([
+            {
+                user_id: id,
+                watched: watched,
+                movie_id: movieId,
+                liked: liked,
+                title: title
+            }
+        ])
+
+    if (error) {
+        console.log(error)
+    }
+
+    return {data, error}
+}

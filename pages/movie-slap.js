@@ -2,15 +2,33 @@ import {useEffect, useState} from 'react';
 import {supabase} from "../supabase";
 import {fetchRandomMovies} from "../helper/movies";
 import SimpleHeader from "../components/SimpleHeader";
+import TinderCard from "react-tinder-card";
+import MovieCard from "../components/MovieCard";
+import Message from "../components/Message";
+import {addToWatchlist} from "../helper/watchlist";
 
-const MovieSlap = () => {
+const MovieSlap = ({user}) => {
     const [movies, setMovies] = useState([])
-    const [message, setMessage] = useState([])
+    const [message, setMessage] = useState({type: "", message: ""})
 
     useEffect(() => {
         fetchMovies()
     }, []);
 
+    const handleAddToWatchList = async (movie) => {
+        const res = await addToWatchlist(user.id, movie.id, false, true, movie.title)
+
+        console.log(res)
+
+        if (res.error) {
+            console.error(res.error.message)
+            setMessage({type: "error", message: "Something went wrong"})
+        }
+
+        if (res.data) {
+            setMessage({type: "success", message: "Movie added to watchlist"})
+        }
+    }
 
     async function fetchMovies() {
         const data = await fetchRandomMovies()
@@ -18,9 +36,32 @@ const MovieSlap = () => {
         setMovies(data)
     }
 
+    const renderMovies = () => {
+        return movies.map((movie, index) => (
+            <TinderCard
+                key={movie.id}
+                className={`absolute min-h-50`}
+                onSwipe={direction => direction === "right" ? handleAddToWatchList(movie) : setMessage({
+                    message: "",
+                    type: ""
+                })}
+            >
+                <MovieCard
+                    movie={movie}
+                />
+            </TinderCard>
+        ))
+    }
+
     return (
         <div>
+            {message && message.message && <Message message={message.message} type={message.type}/>}
+
             <SimpleHeader text={"Slap your Movies"}/>
+
+            <div className={`relative mx-auto max-w-sm`}>
+                {movies && renderMovies()}
+            </div>
         </div>
     );
 };
