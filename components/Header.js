@@ -1,7 +1,5 @@
 import React from 'react';
 import Link from "next/link";
-import {supabase} from "../supabase";
-import {useRouter} from "next/router";
 import Navigation from "./Navigation";
 
 const Header = ({authenticatedState}) => {

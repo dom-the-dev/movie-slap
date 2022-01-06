@@ -47,8 +47,9 @@
     @apply bg-gray-400 border-gray-400;
   }
 
-  input[type="text"] {
-    @apply border rounded px-2;
+  input[type="text"],
+  input[type="email"], {
+    @apply border rounded p-2;
   }
 }
 

@@ -7,7 +7,7 @@ const MovieCard = ({movie, asLink}) => {
     const MC = () => {
         return (
             <div className={`relative hover:shadow cursor-pointer`}>
-                <div className={`bg-brand`}>
+                <div className={`bg-brand rounded`}>
                     {movie.poster_path ?
                         <img
                             src={`${IMAGE_PATH}/${movie.poster_path}`}

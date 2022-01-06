@@ -1,5 +1,4 @@
 import {useState} from 'react';
-import PropTypes from 'prop-types';
 import Link from "next/link";
 import {useRouter} from "next/router";
 import {supabase} from "../supabase";
@@ -54,7 +53,7 @@ const Navigation = ({authenticatedState}) => {
                         </li>
                         <li className={`mb-2 md:mb-0 group relative md:pr-0 cursor-pointer`}>
                             <span className={`hidden md:block p-2`}>Account</span>
-                            <ul className={"md:hidden md:group-hover:block md:absolute top-5 bg-dark rounded md:p-2"}>
+                            <ul className={"md:hidden md:group-hover:block md:absolute top-5 md:top-10 bg-dark rounded md:p-2"}>
                                 <li className={`mb-2 md:mb-0`}>
                                     <Link href="/profile">
                                         <a className={`p-2 hover:text-brand`}>

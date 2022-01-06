@@ -55,7 +55,7 @@ export default function Home() {
 
 
             <div className={`flex flex-col md:flex-row items-center justify-center md:justify-between mb-5 md:mb-0`}>
-                <form onSubmit={handleSubmit} className={`input w-full md:w-1/3 flex mb-3`}>
+                <form onSubmit={handleSubmit} className={`w-full md:w-1/3 flex mb-3`}>
                     <input
                         className={`w-full`}
                         type="text"
@@ -79,7 +79,7 @@ export default function Home() {
                 </div>
             </div>
 
-            <div className="container mx-auto grid grid-cols-2 sm:grid-cols-5  gap-3">
+            <div className="container mx-auto grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3">
                 {renderMovies(movies)}
             </div>
 
