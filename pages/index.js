@@ -42,7 +42,7 @@ export default function Home() {
 
     return (
         <div>
-            <div className={`h-40 sm:h-52 md:h-64 bg-light mb-5 rounded-b bg-fixed bg-top bg-contain p-10 `}
+            <div className={`h-40 sm:h-52 md:h-64 bg-light mb-5 rounded-b bg-fixed bg-top bg-contain p-10  flex justify-center items-center`}
                  style={movies[0] && {backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)) , url(${BACKDROP_PATH}${movies[0].backdrop_path})`}
                  }
             >

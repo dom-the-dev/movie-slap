@@ -19,7 +19,7 @@ const Navigation = ({authenticatedState}) => {
                     onClick={() => setShowNav(!showNav)}>
                 {showNav ? "Close" : "Menu"}
             </button>
-            <ul className={`items-center text-white ${showNav ? "fixed right-0 top-10 bottom-0 bg-dark z-10 pt-5" : "hidden"} md:pt-0 md:static md:flex`}>
+            <ul className={`items-center text-white ${showNav ? "fixed right-0 w-1/2 top-10 bottom-0 bg-dark z-10 pt-5" : "hidden"} md:pt-0 md:static md:flex`}>
                 <li className={`mb-2 md:mb-0`}>
                     <Link href="/">
                         <a className={`p-2 hover:text-brand`}>
