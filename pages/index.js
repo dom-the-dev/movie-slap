@@ -1,8 +1,9 @@
 import {useEffect, useState} from "react";
 import {fetchTrending, searchMovies as searchMovieApi} from "../helper/movies";
 import MovieCard from "../components/MovieCard";
+import {supabase} from "../supabase";
 
-export default function Home() {
+export default function Home({user}) {
     const BACKDROP_PATH = "https://image.tmdb.org/t/p/w1280"
     const [movies, setMovies] = useState([])
     const [searchQuery, setSearchQuery] = useState("")
@@ -12,7 +13,8 @@ export default function Home() {
 
     useEffect(() => {
         fetchMovies(1, type)
-    }, [type])
+
+    }, [type, user])
 
 
     async function fetchMovies(nextPage = 1) {
@@ -103,4 +105,14 @@ export default function Home() {
 
         </div>
     )
+}
+
+export async function getServerSideProps({req}) {
+    const {user} = await supabase.auth.api.getUserByCookie(req)
+
+    return {
+        props: {
+            user
+        }
+    }
 }
