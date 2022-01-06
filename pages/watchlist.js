@@ -19,8 +19,8 @@ const Watchlist = ({user}) => {
         const watchtList = await getWatchList(user.id)
 
         let movies = []
-        for (const movie of watchtList.data) {
-            let mov = await getMovie(movie.movie_id)
+        for (const movie of watchtList) {
+            let mov = await getMovie(movie.movie_id, movie.type)
             mov.watched = movie.watched
             movies.push(mov)
         }
@@ -29,8 +29,8 @@ const Watchlist = ({user}) => {
         setLoading(false)
     }
 
-    async function getMovie(id) {
-        return await fetchMovie(id)
+    async function getMovie(id, type) {
+        return await fetchMovie(id, type)
     }
 
     async function handleWatched(movieId, watched) {

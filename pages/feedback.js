@@ -47,7 +47,7 @@ const Feedback = () => {
                     <input className={`w-full my-2`} required type="text" name="name" placeholder="Your Name"/><br/>
                     <textarea className={`w-full my-2 h-24`} required type="text" name="message"
                               placeholder="Your Message"/> <br/>
-                    <button type="submit">Send</button>
+                    <button className={`primary`} type="submit">Send</button>
                 </form>
             </div>
         </div>

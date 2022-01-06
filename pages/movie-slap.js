@@ -17,7 +17,7 @@ const MovieSlap = ({user}) => {
     }, []);
 
     const handleAddToWatchList = async (movie) => {
-        const res = await addToWatchlist(user.id, movie.id, false, true, movie.title)
+        const res = await addToWatchlist(user.id, movie.id, false, true, movie.title, movie.media_type)
 
         if (res.error) {
             console.error(res.error.message)
