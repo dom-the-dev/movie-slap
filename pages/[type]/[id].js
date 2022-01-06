@@ -1,11 +1,10 @@
 import React from 'react';
 import SimpleHeader from "../../components/SimpleHeader";
 import {supabase} from "../../supabase";
-import {fetchMovie, getMovieProvider} from "../../helper/movies";
+import {fetchMovie} from "../../helper/movies";
 
-const Movie = ({user, movie}) => {
-    console.log(movie)
-    const title = movie.media_type === "tv" ? movie.name : movie.title
+const Movie = ({user, movie, type}) => {
+    const title = type === "tv" ? movie.name : movie.title
 
     return (
         <div>
@@ -18,7 +17,8 @@ export default Movie;
 
 export async function getServerSideProps({req, params}) {
     const {user} = await supabase.auth.api.getUserByCookie(req)
-    const movie = await fetchMovie(params.id)
+    const movie = await fetchMovie(params.id, params.type)
+
 
     // const provider = await getMovieProvider(params.id)
 
@@ -26,6 +26,7 @@ export async function getServerSideProps({req, params}) {
         props: {
             user,
             movie,
+            type: params.type
             // provider
         }
     }

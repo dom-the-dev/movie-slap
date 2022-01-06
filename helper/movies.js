@@ -59,8 +59,8 @@ export const fetchRandomMovies = async () => {
     return data.results
 }
 
-export const fetchMovie = async (id) => {
-    const {data} = await axios.get(`${MOVIE_API}/movie/${id}?append_to_response=videos,images,watch`, {
+export const fetchMovie = async (id, type) => {
+    const {data} = await axios.get(`${MOVIE_API}/${type}/${id}?append_to_response=videos,images,watch`, {
         params: {
             api_key: process.env.NEXT_PUBLIC_MOVIE_API_KEY
         }

@@ -32,7 +32,7 @@ const MovieCard = ({movie, asLink}) => {
     // 300 * 450
     const AsLink = ({children}) => {
         return (
-            <Link href={`movies/${movie.id}`}>
+            <Link href={`${movie.media_type}/${movie.id}`}>
                 <a>
                     {children}
                 </a>
