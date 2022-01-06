@@ -54,8 +54,8 @@ export default function Home() {
             </div>
 
 
-            <div className={`flex justify-between mb-5`}>
-                <form onSubmit={handleSubmit} className={`input w-1/3 flex`}>
+            <div className={`flex flex-col md:flex-row items-center justify-center md:justify-between mb-5 md:mb-0`}>
+                <form onSubmit={handleSubmit} className={`input w-full md:w-1/3 flex mb-3`}>
                     <input
                         className={`w-full`}
                         type="text"
@@ -66,13 +66,12 @@ export default function Home() {
                     <button type={"submit"} className={`primary`}>Go</button>
                 </form>
 
-                <div>
-
-                    <button className={`mr-2 ${type === "movie" ? "primary" : "secondary"}`}
+                <div className={`w-full md:w-auto flex items-center md:mb-5`}>
+                    <button className={`mr-2 w-1/2 ${type === "movie" ? "primary" : "secondary"}`}
                             onClick={() => setType("movie")}>
                         Movie
                     </button>
-                    <button className={`${type === "tv" ? "primary" : "secondary"}`}
+                    <button className={` w-1/2 ${type === "tv" ? "primary" : "secondary"}`}
                             onClick={() => setType("tv")}>
                         Series
                     </button>
