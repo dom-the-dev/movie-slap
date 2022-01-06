@@ -8,6 +8,7 @@ import Message from "../components/Message";
 import {addToWatchlist} from "../helper/watchlist";
 
 const MovieSlap = ({user}) => {
+    const [loading, setLoading] = useState(true)
     const [movies, setMovies] = useState([])
     const [message, setMessage] = useState({type: "", message: ""})
 
@@ -17,8 +18,6 @@ const MovieSlap = ({user}) => {
 
     const handleAddToWatchList = async (movie) => {
         const res = await addToWatchlist(user.id, movie.id, false, true, movie.title)
-
-        console.log(res)
 
         if (res.error) {
             console.error(res.error.message)
@@ -34,6 +33,7 @@ const MovieSlap = ({user}) => {
         const data = await fetchRandomMovies()
 
         setMovies(data)
+        setLoading(false)
     }
 
     const renderMovies = () => {
@@ -47,6 +47,7 @@ const MovieSlap = ({user}) => {
                 })}
             >
                 <MovieCard
+                    asLink={false}
                     movie={movie}
                 />
             </TinderCard>
@@ -60,7 +61,7 @@ const MovieSlap = ({user}) => {
             <SimpleHeader text={"Slap your Movies"}/>
 
             <div className={`relative mx-auto max-w-sm`}>
-                {movies && renderMovies()}
+                {loading ? "loading movies" : movies && renderMovies()}
             </div>
         </div>
     );

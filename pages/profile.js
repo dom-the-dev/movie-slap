@@ -76,7 +76,7 @@ const Profile = ({user}) => {
 
     return (
         <div>
-            <SimpleHeader text={"Feedback"}/>
+            <SimpleHeader text={"Profile"}/>
 
             <form onSubmit={handleSubmit} className={"form-wrapper"}>
 

@@ -8,6 +8,7 @@ import SimpleHeader from "../components/SimpleHeader";
 
 const Watchlist = ({user}) => {
     const [watchList, setWatchList] = useState([])
+    const [loading, setLoading] = useState(true)
     const [message, setMessage] = useState({type: "", message: ""})
 
     useEffect(() => {
@@ -25,6 +26,7 @@ const Watchlist = ({user}) => {
         }
 
         setWatchList(movies)
+        setLoading(false)
     }
 
     async function getMovie(id) {
@@ -84,7 +86,7 @@ const Watchlist = ({user}) => {
             {message.message && <Message message={message.message} type={message.type}/>}
             <SimpleHeader text={"Your Watchlist"}/>
             <div className="container mx-auto grid grid-cols-4 md:grid-cols-6 lg:grid-cols-5 gap-3">
-                {renderWatchlist()}
+                {loading ? "loading your watchlist" : renderWatchlist()}
             </div>
         </div>
     );

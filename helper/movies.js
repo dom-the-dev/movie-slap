@@ -60,7 +60,17 @@ export const fetchRandomMovies = async () => {
 }
 
 export const fetchMovie = async (id) => {
-    const {data} = await axios.get(`${MOVIE_API}/movie/${id}`, {
+    const {data} = await axios.get(`${MOVIE_API}/movie/${id}?append_to_response=videos,images,watch`, {
+        params: {
+            api_key: process.env.NEXT_PUBLIC_MOVIE_API_KEY
+        }
+    })
+
+    return data
+}
+
+export const getMovieProvider = async (id) => {
+    const {data} = await axios.get(`${MOVIE_API}/movie/${id}/watch/providers`, {
         params: {
             api_key: process.env.NEXT_PUBLIC_MOVIE_API_KEY
         }
