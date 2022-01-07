@@ -71,44 +71,51 @@ const Login = () => {
             <SimpleHeader text={"Login"}/>
             <div className={`md:w-1/2 mx-auto flex flex-col`}>
 
-                <div>
-                    <p>Did you signed up with magic link? Login with your email again. In your profile you can set new a
-                        password.</p>
-                    <button type={"submit"}
-                            onClick={() => setMagicLink(!magicLink)}> {!magicLink ? "Login with magic link" : "Login with password"}</button>
-                </div>
+                {!forgotPassword &&
+                    <div>
+                        <p>Did you signed up with magic link? Login with your email again. In your profile you can set
+                            new a
+                            password.</p>
+                        <div className={"my-2"}>
+                            <input className={`w-10 scale-150`} type="checkbox" id="checkbox"
+                                   onChange={() => setMagicLink(!magicLink)}/>
+                            <label htmlFor="checkbox">Login with magic link ?</label>
+                        </div>
+                    </div>
+                }
 
                 {magicLink ?
                     <div>
-                        <form>
-                            <input type="email" onChange={e => setMagicEmail(e.target.value)}/>
-                            <button onClick={loginWithMagicLink}>Login with email</button>
+                        <form className={`flex flex-col`}>
+                            <input className={`my-1`} type="email" onChange={e => setMagicEmail(e.target.value)}
+                                   placeholder={"Email"}/>
+                            <button className={`primary mt-1`} onClick={loginWithMagicLink}>Login with email</button>
                         </form>
                     </div>
-                : forgotPassword ?
+                    : forgotPassword ?
 
-                    <form onSubmit={requestRest} className={`flex flex-col`}>
-                        <input type="email" placeholder={"Email"} onChange={(e) => setForgotEmail(e.target.value)}/>
-                        <button className={`primary mt-1`} type={"submit"}>Reset Password</button>
-                    </form>
-                    :
-                    <form onSubmit={signIn} className={`flex flex-col`}>
-                        <input
-                            className={`border-2 my-1`}
-                            type="text"
-                            required
-                            placeholder={"Email"}
-                            onChange={e => setEmail(e.target.value)}
-                        />
-                        <input
-                            className={`border-2 my-1`}
-                            required
-                            type="password"
-                            placeholder={"Password"}
-                            onChange={e => setPassword(e.target.value)}
-                        />
-                        <button className={`primary mt-1`} type={"submit"}>Send</button>
-                    </form>
+                        <form onSubmit={requestRest} className={`flex flex-col`}>
+                            <input type="email" placeholder={"Email"} onChange={(e) => setForgotEmail(e.target.value)}/>
+                            <button className={`primary mt-1`} type={"submit"}>Reset Password</button>
+                        </form>
+                        :
+                        <form onSubmit={signIn} className={`flex flex-col`}>
+                            <input
+                                className={`border-2 my-1`}
+                                type="text"
+                                required
+                                placeholder={"Email"}
+                                onChange={e => setEmail(e.target.value)}
+                            />
+                            <input
+                                className={`border-2 my-1`}
+                                required
+                                type="password"
+                                placeholder={"Password"}
+                                onChange={e => setPassword(e.target.value)}
+                            />
+                            <button className={`primary mt-1`} type={"submit"}>Login</button>
+                        </form>
                 }
                 <button className={`secondary mt-10`} onClick={() => setForgotPassword(!forgotPassword)}>
                     {!forgotPassword ? "Forgot Password?" : "Back to login"}

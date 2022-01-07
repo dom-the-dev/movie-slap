@@ -53,6 +53,10 @@
   input[type="email"], {
     @apply border rounded p-2;
   }
+
+  a {
+    @apply text-brand;
+  }
 }
 
 p {
