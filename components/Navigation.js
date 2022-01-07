@@ -1,6 +1,11 @@
 import {useState} from 'react';
 import {useUser} from "../lib/UserContext";
 import NavItem from "./NavItem";
+import { AiOutlineSearch, AiOutlineHome } from "react-icons/ai";
+import { FaRegHandRock } from "react-icons/fa";
+import { BsEyeglasses, BsPlusCircle } from "react-icons/bs";
+import { CgProfile, CgLogOut, CgLogIn } from "react-icons/cg";
+import {RiFeedbackLine} from "react-icons/ri";
 
 const Navigation = () => {
     const {user} = useUser()
@@ -19,10 +24,12 @@ const Navigation = () => {
                 <NavItem
                     href={"/search"}
                     title={"Search"}
+                    icon={<AiOutlineSearch/>}
                 />
                 <NavItem
                     href={"/"}
                     title={"Home"}
+                    icon={<AiOutlineHome/>}
                 />
 
                 {user ?
@@ -30,10 +37,12 @@ const Navigation = () => {
                         <NavItem
                             href={"/movie-slap"}
                             title={"Slap"}
+                            icon={<FaRegHandRock/>}
                         />
                         <NavItem
                             href={"/watchlist"}
                             title={"Watchlist"}
+                            icon={<BsEyeglasses/>}
                         />
                     </>
                     : null}
@@ -46,10 +55,12 @@ const Navigation = () => {
                         <NavItem
                             href={"/login"}
                             title={"Login"}
+                            icon={<CgLogIn/>}
                         />
                         <NavItem
                             href={"/sign-up"}
                             title={"Sign Up"}
+                            icon={<BsPlusCircle/>}
                         />
                     </>
 
@@ -58,10 +69,12 @@ const Navigation = () => {
                         <NavItem
                             href={"/profile"}
                             title={"Profile"}
+                            icon={<CgProfile/>}
                         />
                         <NavItem
                             href={"/sign-out"}
                             title={"Logout"}
+                            icon={<CgLogOut/>}
                         />
                     </>
                 }
@@ -74,6 +87,7 @@ const Navigation = () => {
                 <NavItem
                     href={"/feedback"}
                     title={"Feedback"}
+                    icon={<RiFeedbackLine/>}
                 />
             </ul>
         </nav>

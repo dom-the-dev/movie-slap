@@ -19,6 +19,7 @@ const MovieSlider = ({movies, title}) => {
         speed: 500,
         autoplay: true,
         draggable: false,
+        arrows: false,
         slidesToShow: 5,
         slidesToScroll: 5
     };

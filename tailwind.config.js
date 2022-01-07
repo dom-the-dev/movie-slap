@@ -12,7 +12,7 @@ module.exports = {
       semi: "#304455",
       mid: "#829BB0",
       // mid: "#8F8AC0",
-      light: "#FFFFFF",
+      light: "#E0E6EF",
       gray: colors.gray,
       white: colors.white,
       black: colors.black,
