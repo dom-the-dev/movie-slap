@@ -2,6 +2,7 @@ import {useState} from 'react';
 import axios from "axios";
 import Message from "../components/Message";
 import SimpleHeader from "../components/SimpleHeader";
+import Layout from "../components/Layout";
 
 const Feedback = () => {
     const [status, setStatus] = useState("")
@@ -35,7 +36,7 @@ const Feedback = () => {
     };
 
     return (
-        <div>
+        <Layout title={"Feedback"}>
             {status && <Message message={status} type={"success"}/>}
 
             <SimpleHeader text={"Feedback"}/>
@@ -50,7 +51,7 @@ const Feedback = () => {
                     <button className={`primary`} type="submit">Send</button>
                 </form>
             </div>
-        </div>
+        </Layout>
     );
 };
 

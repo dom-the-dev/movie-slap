@@ -1,11 +1,12 @@
 import {useEffect, useState} from 'react';
-import {supabase} from "../supabase";
+import {supabase} from "../lib/initSupabase";
 import {fetchRandomMovies} from "../helper/movies";
 import SimpleHeader from "../components/SimpleHeader";
 import TinderCard from "react-tinder-card";
 import MovieCard from "../components/MovieCard";
 import Message from "../components/Message";
 import {addToWatchlist} from "../helper/watchlist";
+import Layout from "../components/Layout";
 
 const MovieSlap = ({user}) => {
     const [loading, setLoading] = useState(true)
@@ -56,7 +57,7 @@ const MovieSlap = ({user}) => {
     }
 
     return (
-        <div>
+        <Layout title={"Slap!"}>
             {message && message.message && <Message message={message.message} type={message.type}/>}
 
             <SimpleHeader text={"Slap your Movies"}/>
@@ -64,7 +65,7 @@ const MovieSlap = ({user}) => {
             <div className={`relative mx-auto max-w-sm`}>
                 {loading ? "loading movies" : movies && renderMovies()}
             </div>
-        </div>
+        </Layout>
     );
 };
 

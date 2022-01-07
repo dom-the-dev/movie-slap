@@ -1,6 +1,6 @@
 import React from 'react';
 import SimpleHeader from "../../components/SimpleHeader";
-import {supabase} from "../../supabase";
+import {supabase} from "../../lib/initSupabase";
 import {fetchMovie} from "../../helper/movies";
 
 const Movie = ({user, movie, type}) => {

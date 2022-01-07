@@ -1,10 +1,26 @@
 import {useEffect, useState} from 'react';
-import {supabase} from "../supabase";
+import {supabase} from "../lib/initSupabase";
 import {getWatchList, updateWatchlistMovie, deleteFromWatchlist} from "../helper/watchlist";
 import {fetchMovie} from "../helper/movies";
 import MovieCard from "../components/MovieCard";
 import Message from "../components/Message";
 import SimpleHeader from "../components/SimpleHeader";
+import Layout from "../components/Layout";
+
+export async function getServerSideProps({req}) {
+    const {user} = await supabase.auth.api.getUserByCookie(req)
+
+    if (!user) {
+        await supabase.auth.signOut()
+        return {props: {}, redirect: {destination: '/sign-up'}}
+    }
+
+    return {
+        props: {
+            user
+        }
+    }
+}
 
 const Watchlist = ({user}) => {
     const [watchList, setWatchList] = useState([])
@@ -82,28 +98,14 @@ const Watchlist = ({user}) => {
     )
 
     return (
-        <div>
+        <Layout title={"Watchlist"}>
             {message.message && <Message message={message.message} type={message.type}/>}
             <SimpleHeader text={"Your Watchlist"}/>
             <div className="container mx-auto grid grid-cols-4 md:grid-cols-6 lg:grid-cols-5 gap-3">
                 {loading ? "loading your watchlist" : renderWatchlist()}
             </div>
-        </div>
+        </Layout>
     );
 };
 
 export default Watchlist;
-
-export async function getServerSideProps({req}) {
-    const {user} = await supabase.auth.api.getUserByCookie(req)
-
-    if (!user) {
-        return {props: {}, redirect: {destination: '/sign-up'}}
-    }
-
-    return {
-        props: {
-            user
-        }
-    }
-}

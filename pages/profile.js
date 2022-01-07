@@ -1,7 +1,8 @@
 import {useEffect, useState} from "react";
-import {supabase} from "../supabase";
+import {supabase} from "../lib/initSupabase";
 import Image from "next/image";
 import SimpleHeader from "../components/SimpleHeader";
+import Layout from "../components/Layout";
 
 
 const Profile = ({user}) => {
@@ -74,14 +75,24 @@ const Profile = ({user}) => {
 
     }
 
+    async function removeCookie() {
+        await fetch("/api/remove", {
+            method: "GET",
+            credentials: "same-origin"
+        })
+    }
+
     return (
-        <div>
+        <Layout title={"Profile"}>
             <SimpleHeader text={"Profile"}/>
+
+            <button className="primary" onClick={removeCookie}>Clear cookie</button>
 
             <form onSubmit={handleSubmit} className={"form-wrapper"}>
 
                 {avatarUrl ?
-                    <Image src={`${process.env.NEXT_PUBLIC_SUPABASE_STORAGE}${avatarUrl}`} alt="Avatar" width={150} height={150}/>
+                    <Image src={`${process.env.NEXT_PUBLIC_SUPABASE_STORAGE}${avatarUrl}`} alt="Avatar" width={150}
+                           height={150}/>
                     :
                     "No Avatar"
                 }
@@ -132,7 +143,7 @@ const Profile = ({user}) => {
                     <button className={"primary button button--fluid"} type={"submit"}>Save Profile</button>
                 </div>
             </form>
-        </div>
+        </Layout>
     );
 };
 
@@ -142,7 +153,9 @@ export async function getServerSideProps({req}) {
     const {user} = await supabase.auth.api.getUserByCookie(req)
 
     if (!user) {
-        return {props: {}, redirect: {destination: '/sign-up'}}
+        return {
+            props: {expired: true}, redirect: {destination: '/sign-up'}
+        }
     }
 
     return {

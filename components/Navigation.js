@@ -1,9 +1,11 @@
 import {useState} from 'react';
 import Link from "next/link";
 import {useRouter} from "next/router";
-import {supabase} from "../supabase";
+import {supabase} from "../lib/initSupabase";
+import {useUser} from "../lib/UserContext";
 
-const Navigation = ({authenticatedState}) => {
+const Navigation = () => {
+    const {user} = useUser()
     const router = useRouter()
     const [showNav, setShowNav] = useState(false)
 
@@ -34,7 +36,7 @@ const Navigation = ({authenticatedState}) => {
                     </Link>
                 </li>
 
-                {!authenticatedState ?
+                {!user ?
                     <li className={`mb-2 md:mb-0`}>
                         <Link href="/sign-up">
                             <a className={`p-2 hover:text-brand`}>

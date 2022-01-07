@@ -1,7 +1,8 @@
 import {useEffect, useState} from "react";
 import {fetchTrending, searchMovies as searchMovieApi} from "../helper/movies";
 import MovieCard from "../components/MovieCard";
-import {supabase} from "../supabase";
+import {supabase} from "../lib/initSupabase";
+import Layout from "../components/Layout";
 
 export default function Home({user}) {
     const BACKDROP_PATH = "https://image.tmdb.org/t/p/w1280"
@@ -43,7 +44,7 @@ export default function Home({user}) {
     }
 
     return (
-        <div>
+        <Layout title={"Home"}>
             <div className={`h-40 sm:h-56 md:h-64 bg-light mb-5 rounded-b bg-fixed bg-top bg-contain p-10  flex justify-center items-center`}
                  style={movies[0] && {backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)) , url(${BACKDROP_PATH}${movies[0].backdrop_path})`}
                  }
@@ -103,7 +104,7 @@ export default function Home({user}) {
                 </button>
             </div>
 
-        </div>
+        </Layout>
     )
 }
 

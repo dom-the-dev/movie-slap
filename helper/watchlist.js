@@ -1,4 +1,4 @@
-import {supabase} from "../supabase";
+import {supabase} from "../lib/initSupabase";
 
 export const getWatchList = async (id) => {
     const {data, error} = await supabase

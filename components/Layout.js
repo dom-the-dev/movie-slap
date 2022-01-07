@@ -3,7 +3,7 @@ import Head from "next/head";
 import Header from "./Header";
 import Footer from "./Footer";
 
-const Layout = ({children, authenticatedState}) => {
+const Layout = ({children, title}) => {
     return (
         <div>
             <Head>
@@ -12,7 +12,7 @@ const Layout = ({children, authenticatedState}) => {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
 
-            <Header authenticatedState={authenticatedState}/>
+            <Header/>
 
             <main className={`mx-auto container min-h-screen px-2`}>
                 {children}

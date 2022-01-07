@@ -1,8 +1,9 @@
 import React from 'react';
+import Layout from "../components/Layout";
 
 const StyleGuide = () => {
     return (
-        <div>
+        <Layout title={"Styleguide"}>
             <h1>Headline</h1>
             <h2>Headline</h2>
             <h3>Headline</h3>
@@ -18,7 +19,7 @@ const StyleGuide = () => {
                 <label htmlFor="" className="label">Label</label>
                 <input type="text" className="input" placeholder={"Input"}/>
             </div>
-        </div>
+        </Layout>
 
     );
 };
