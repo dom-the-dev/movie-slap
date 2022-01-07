@@ -1,4 +1,6 @@
 import '../styles/globals.scss'
+import "../node_modules/slick-carousel/slick/slick.css";
+import "../node_modules/slick-carousel/slick/slick-theme.css";
 import {supabase} from "../lib/initSupabase";
 import {UserContextProvider} from "../lib/UserContext";
 

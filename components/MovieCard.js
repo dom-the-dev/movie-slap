@@ -6,10 +6,11 @@ const MovieCard = ({movie, asLink}) => {
 
     const MC = () => {
         return (
-            <div className={`relative hover:shadow cursor-pointer`}>
+            <div className={`relative cursor-pointer mr-5`}>
                 <div className={`bg-brand`}>
                     {movie.poster_path ?
                         <img
+                            className={`rounded-3xl`}
                             src={`${IMAGE_PATH}/${movie.poster_path}`}
                             alt={`${title} cover`}
                         />
@@ -17,11 +18,11 @@ const MovieCard = ({movie, asLink}) => {
                     }
                 </div>
                 <div
-                    className={`absolute top-2 right-2 rounded-full w-10 h-10 flex justify-center items-center text-sm text-dark bg-brand font-bold border-white border`}>
+                    className={`absolute top-2 right-2 rounded-full w-8 h-8 flex justify-center items-center text-xs text-brand bg-dark font-bold `}>
                     {movie.vote_average}
                 </div>
                 <div
-                    className={`text-center absolute bottom-0 h-14 p-1 flex justify-center items-center bg-dark text-white tracking-wider w-full`}>
+                    className={`font-bold h-20 pt-2 tracking-wider w-full text-semi`}>
                     {title}
                 </div>
             </div>
@@ -32,7 +33,7 @@ const MovieCard = ({movie, asLink}) => {
     const AsLink = ({children}) => {
         return (
             <Link href={`${movie.media_type}/${movie.id}`}>
-                <a>
+                <a className={`hover:no-underline`}>
                     {children}
                 </a>
             </Link>

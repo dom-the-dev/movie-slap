@@ -1,19 +1,10 @@
 import {useState} from 'react';
-import Link from "next/link";
-import {useRouter} from "next/router";
-import {supabase} from "../lib/initSupabase";
 import {useUser} from "../lib/UserContext";
 import NavItem from "./NavItem";
 
 const Navigation = () => {
     const {user} = useUser()
-    const router = useRouter()
     const [showNav, setShowNav] = useState(false)
-
-    async function signOut() {
-        await supabase.auth.signOut()
-        router.push('/login')
-    }
 
     return (
         <nav className={`px-5`}>
@@ -25,6 +16,10 @@ const Navigation = () => {
                 <span>Menu</span>
             </div>
             <ul>
+                <NavItem
+                    href={"/search"}
+                    title={"Search"}
+                />
                 <NavItem
                     href={"/"}
                     title={"Home"}
@@ -60,18 +55,14 @@ const Navigation = () => {
 
                     :
                     <>
-                        <li>
-                            <ul>
-                                <NavItem
-                                    href={"/profile"}
-                                    title={"Profile"}
-                                />
-                                <li>
-                                    <button className={`text-mid text-sm hover:text-brand border-none outline-none p-0 m-0`} onClick={signOut}>Logout
-                                    </button>
-                                </li>
-                            </ul>
-                        </li>
+                        <NavItem
+                            href={"/profile"}
+                            title={"Profile"}
+                        />
+                        <NavItem
+                            href={"/sign-out"}
+                            title={"Logout"}
+                        />
                     </>
                 }
             </ul>

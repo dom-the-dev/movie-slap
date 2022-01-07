@@ -14,8 +14,10 @@ const Layout = ({children, title}) => {
 
             <Header/>
 
-            <main className={`pl-60 mt-7 min-h-screen`}>
-                {children}
+            <main className={`pl-60 pr-8 mt-7 min-h-screen pb-20`}>
+                <div className={`container`}>
+                    {children}
+                </div>
             </main>
 
             <Footer/>
