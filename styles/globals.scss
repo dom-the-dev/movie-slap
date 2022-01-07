@@ -3,8 +3,15 @@
 @tailwind utilities;
 
 @layer base {
+
+  @font-face {
+    font-family: 'Roboto';
+    src: url('./Roboto/Roboto-Regular.ttf') format('truetype');
+  }
+
   body {
-    @apply bg-gray-100;
+    @apply bg-gray-100 text-semi;
+    font-family: "Roboto", sans-serif;
   }
 
   h1, h2, h3, h4, h5 {
@@ -32,7 +39,7 @@
   }
 
   button {
-    @apply px-5 py-0.5 font-bold tracking-wider rounded border-2 border-brand cursor-pointer;
+    @apply py-2 px-4 font-bold tracking-wider rounded-3xl border-2 border-brand cursor-pointer;
   }
 
   button.primary {
@@ -47,11 +54,9 @@
     @apply bg-gray-400 border-gray-400;
   }
 
-  textarea,
-  input[type="text"],
-  input[type="password"],
-  input[type="email"], {
-    @apply border rounded p-2;
+  input,
+  textarea {
+    @apply border-2 rounded-3xl py-2 px-4;
   }
 
   a {
@@ -64,8 +69,6 @@ p {
 }
 
 body {
-  background: #E0EAFC;
-  background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);
-  background: linear-gradient(to right, #CFDEF3, #E0EAFC);
-  box-sizing: border-box;
+  background: #ffffff;
+
 }

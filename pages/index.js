@@ -45,7 +45,40 @@ export default function Home({user}) {
 
     return (
         <Layout title={"Home"}>
-            <div className={`h-40 sm:h-56 md:h-64 bg-light mb-5 rounded-b bg-fixed bg-top bg-contain p-10  flex justify-center items-center`}
+
+            <div className={``}>
+                <form onSubmit={handleSubmit} className={``}>
+                    <div className={`relative  w-1/3`}>
+                    <input
+                        className={`w-full pl-5 text-xs`}
+                        type="text"
+                        placeholder={"Search..."}
+                        value={searchQuery}
+                        onChange={e => setSearchQuery(e.target.value)}
+                    />
+                    <button type={"submit"} className={`absolute flex justify-center items-center h-10 w-10 top-1 right-1 rounded-full text-xl`}>
+                        GO
+                    </button>
+                    </div>
+                </form>
+
+                <div className={``}>
+                    <button className={` ${type === "movie" ? "primary" : "secondary"}`}
+                            onClick={() => setType("movie")}>
+                        Movie
+                    </button>
+                    <button className={` ${type === "tv" ? "primary" : "secondary"}`}
+                            onClick={() => setType("tv")}>
+                        Series
+                    </button>
+
+                </div>
+            </div>
+
+
+
+
+            <div className={`h-40 sm:h-56 md:h-64 bg-light mb-5  bg-fixed bg-top bg-contain p-10  flex justify-center items-center`}
                  style={movies[0] && {backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)) , url(${BACKDROP_PATH}${movies[0].backdrop_path})`}
                  }
             >
@@ -56,31 +89,6 @@ export default function Home({user}) {
 
             </div>
 
-
-            <div className={`flex flex-col md:flex-row items-center justify-center md:justify-between mb-5 md:mb-0`}>
-                <form onSubmit={handleSubmit} className={`w-full md:w-1/3 flex mb-3`}>
-                    <input
-                        className={`w-full`}
-                        type="text"
-                        placeholder={"Search movie"}
-                        value={searchQuery}
-                        onChange={e => setSearchQuery(e.target.value)}
-                    />
-                    <button type={"submit"} className={`primary`}>Go</button>
-                </form>
-
-                <div className={`w-full md:w-auto flex items-center md:mb-5`}>
-                    <button className={`mr-2 w-1/2 ${type === "movie" ? "primary" : "secondary"}`}
-                            onClick={() => setType("movie")}>
-                        Movie
-                    </button>
-                    <button className={` w-1/2 ${type === "tv" ? "primary" : "secondary"}`}
-                            onClick={() => setType("tv")}>
-                        Series
-                    </button>
-
-                </div>
-            </div>
 
             <div className="container mx-auto grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-3">
                 {renderMovies(movies)}

@@ -3,6 +3,7 @@ import Link from "next/link";
 import {useRouter} from "next/router";
 import {supabase} from "../lib/initSupabase";
 import {useUser} from "../lib/UserContext";
+import NavItem from "./NavItem";
 
 const Navigation = () => {
     const {user} = useUser()
@@ -15,78 +16,74 @@ const Navigation = () => {
     }
 
     return (
-        <nav className={`py-2 tracking-wider flex`}>
+        <nav className={`px-5`}>
             <button className={`primary md:hidden`}
                     onClick={() => setShowNav(!showNav)}>
                 {showNav ? "Close" : "Menu"}
             </button>
-            <ul className={`items-center text-white ${showNav ? "fixed right-0 w-1/2 top-10 bottom-0 bg-dark z-10 pt-5" : "hidden"} md:pt-0 md:static md:flex`}>
-                <li className={`mb-2 md:mb-0`}>
-                    <Link href="/">
-                        <a className={`p-2 text-white hover:text-brand hover:no-underline`}>
-                            Home
-                        </a>
-                    </Link>
-                </li>
-                <li className={`mb-2 md:mb-0`}>
-                    <Link href="/feedback">
-                        <a className={`p-2 text-white hover:text-brand hover:no-underline`}>
-                            Feedback
-                        </a>
-                    </Link>
-                </li>
+            <div className={"mb-2 mt-7 text-xs"}>
+                <span>Menu</span>
+            </div>
+            <ul>
+                <NavItem
+                    href={"/"}
+                    title={"Home"}
+                />
 
+                {user ?
+                    <>
+                        <NavItem
+                            href={"/movie-slap"}
+                            title={"Slap"}
+                        />
+                        <NavItem
+                            href={"/watchlist"}
+                            title={"Watchlist"}
+                        />
+                    </>
+                    : null}
+
+                <div className={"mb-2 mt-10 text-xs"}>
+                    <span>Account</span>
+                </div>
                 {!user ?
                     <>
-                        <li className={`mb-2 md:mb-0`}>
-                            <Link href="/login">
-                                <a className={`p-2 text-white hover:text-brand hover:no-underline`}>
-                                    Login
-                                </a>
-                            </Link>
-                        </li>
-                        <li className={`mb-2 md:mb-0`}>
-                            <Link href="/sign-up">
-                                <a className={`p-2 text-white text-white hover:text-brand hover:no-underline`}>
-                                    Sign Up
-                                </a>
-                            </Link>
-                        </li>
+                        <NavItem
+                            href={"/login"}
+                            title={"Login"}
+                        />
+                        <NavItem
+                            href={"/sign-up"}
+                            title={"Sign Up"}
+                        />
                     </>
 
                     :
                     <>
-                        <li className={`mb-2 md:mb-0`}>
-                            <Link href="/movie-slap">
-                                <a className={`p-2 text-white hover:text-brand hover:no-underline`}>
-                                    Slap
-                                </a>
-                            </Link>
-                        </li>
-                        <li className={`mb-2 md:mb-0 group relative md:pr-0 cursor-pointer`}>
-                            <span className={`hidden md:block p-2`}>Account</span>
-                            <ul className={"md:hidden md:group-hover:block md:absolute top-5 md:top-10 bg-dark md:p-2"}>
-                                <li className={`mb-2 md:mb-0`}>
-                                    <Link href="/profile">
-                                        <a className={`p-2 text-white hover:text-brand hover:no-underline`}>
-                                            Profile
-                                        </a>
-                                    </Link>
-                                </li>
+                        <li>
+                            <ul>
+                                <NavItem
+                                    href={"/profile"}
+                                    title={"Profile"}
+                                />
                                 <li>
-                                    <Link href="/watchlist">
-                                        <a className={`p-2 text-white hover:text-brand hover:no-underline`}>
-                                            Watchlist
-                                        </a>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <button className={`ml-2`} onClick={signOut}>Sign out</button>
+                                    <button className={`text-mid text-sm hover:text-brand border-none outline-none p-0 m-0`} onClick={signOut}>Logout
+                                    </button>
                                 </li>
                             </ul>
                         </li>
                     </>
                 }
+            </ul>
+
+            <div className={"mb-2 mt-10 text-xs text-mi"}>
+                <span>Service</span>
+            </div>
+            <ul>
+                <NavItem
+                    href={"/feedback"}
+                    title={"Feedback"}
+                />
             </ul>
         </nav>
     );

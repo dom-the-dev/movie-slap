@@ -9,7 +9,9 @@ module.exports = {
     colors: {
       brand: "#DA1F50",
       dark: "#171435",
-      mid: "#8F8AC0",
+      semi: "#304455",
+      mid: "#829BB0",
+      // mid: "#8F8AC0",
       light: "#FFFFFF",
       gray: colors.gray,
       white: colors.white,

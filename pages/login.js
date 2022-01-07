@@ -71,17 +71,17 @@ const Login = () => {
         <Layout title={"Login"}>
             {message && message.message && <Message message={message.message} type={message.type}/>}
 
-            <SimpleHeader text={"Login"}/>
+            <SimpleHeader text={forgotPassword ? "Reset password" : "Login"}/>
             <div className={`md:w-1/2 mx-auto flex flex-col`}>
 
                 {!forgotPassword &&
-                    <div>
+                    <div className={`mb-10`}>
                         <p>Did you signed up with magic link? Login with your email again. You can set a new password in
                             your profile.</p>
                         <div className={"my-2"}>
-                            <input className={`ml-2 mr-5 scale-150`} type="checkbox" id="checkbox"
+                            <input className={`ml-2 mr-5 scale-150  cursor-pointer`} type="checkbox" id="checkbox"
                                    onChange={() => setMagicLink(!magicLink)}/>
-                            <label htmlFor="checkbox">Login with magic link ?</label>
+                            <label htmlFor="checkbox" className={`cursor-pointer`}>Login with magic link?</label>
                         </div>
                     </div>
                 }
@@ -91,7 +91,7 @@ const Login = () => {
                         <form className={`flex flex-col`}>
                             <input className={`my-1`} type="email" onChange={e => setMagicEmail(e.target.value)}
                                    placeholder={"Email"}/>
-                            <button className={`primary mt-2`} onClick={loginWithMagicLink}>Login with email</button>
+                            <button className={`primary mt-2`} onClick={loginWithMagicLink}>Send Magic Link</button>
                         </form>
                     </div>
                 }

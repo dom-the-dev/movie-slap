@@ -7,14 +7,14 @@ const Layout = ({children, title}) => {
     return (
         <div>
             <Head>
-                <title>Movie Slap (beta)</title>
+                <title>{title} | Movie Slap</title>
                 <meta name="description" content="Movie Application, to create and share your watchlist"/>
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
 
             <Header/>
 
-            <main className={`mx-auto container min-h-screen px-2`}>
+            <main className={`pl-60 mt-7 min-h-screen`}>
                 {children}
             </main>
 
