@@ -11,7 +11,7 @@ const Navigation = () => {
 
     async function signOut() {
         await supabase.auth.signOut()
-        router.push('/sign-up')
+        router.push('/login')
     }
 
     return (
@@ -23,14 +23,14 @@ const Navigation = () => {
             <ul className={`items-center text-white ${showNav ? "fixed right-0 w-1/2 top-10 bottom-0 bg-dark z-10 pt-5" : "hidden"} md:pt-0 md:static md:flex`}>
                 <li className={`mb-2 md:mb-0`}>
                     <Link href="/">
-                        <a className={`p-2 text-white hover:text-brand`}>
+                        <a className={`p-2 text-white hover:text-brand hover:no-underline`}>
                             Home
                         </a>
                     </Link>
                 </li>
                 <li className={`mb-2 md:mb-0`}>
                     <Link href="/feedback">
-                        <a className={`p-2 text-white hover:text-brand`}>
+                        <a className={`p-2 text-white hover:text-brand hover:no-underline`}>
                             Feedback
                         </a>
                     </Link>
@@ -40,14 +40,14 @@ const Navigation = () => {
                     <>
                         <li className={`mb-2 md:mb-0`}>
                             <Link href="/login">
-                                <a className={`p-2 text-white hover:text-brand`}>
+                                <a className={`p-2 text-white hover:text-brand hover:no-underline`}>
                                     Login
                                 </a>
                             </Link>
                         </li>
                         <li className={`mb-2 md:mb-0`}>
                             <Link href="/sign-up">
-                                <a className={`p-2 text-white text-white hover:text-brand`}>
+                                <a className={`p-2 text-white text-white hover:text-brand hover:no-underline`}>
                                     Sign Up
                                 </a>
                             </Link>
@@ -58,7 +58,7 @@ const Navigation = () => {
                     <>
                         <li className={`mb-2 md:mb-0`}>
                             <Link href="/movie-slap">
-                                <a className={`p-2 text-white hover:text-brand`}>
+                                <a className={`p-2 text-white hover:text-brand hover:no-underline`}>
                                     Slap
                                 </a>
                             </Link>
@@ -68,14 +68,14 @@ const Navigation = () => {
                             <ul className={"md:hidden md:group-hover:block md:absolute top-5 md:top-10 bg-dark rounded md:p-2"}>
                                 <li className={`mb-2 md:mb-0`}>
                                     <Link href="/profile">
-                                        <a className={`p-2 text-white hover:text-brand`}>
+                                        <a className={`p-2 text-white hover:text-brand hover:no-underline`}>
                                             Profile
                                         </a>
                                     </Link>
                                 </li>
                                 <li>
                                     <Link href="/watchlist">
-                                        <a className={`p-2 text-white hover:text-brand`}>
+                                        <a className={`p-2 text-white hover:text-brand hover:no-underline`}>
                                             Watchlist
                                         </a>
                                     </Link>

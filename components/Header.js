@@ -8,7 +8,7 @@ const Header = () => (
 
             <div className={`text-brand rounded p-2 tracking-wider font-bold`}>
                 <Link href="/">
-                    <a className={`hover:text-white`}>Movie Slap</a>
+                    <a className={`hover:text-white hover:no-underline`}>Movie Slap</a>
                 </Link>
                 <span className={`text-white font-light`}>{" "}beta</span>
             </div>
