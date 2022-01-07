@@ -15,7 +15,7 @@ const Navigation = () => {
     }
 
     return (
-        <nav className={`py-2 tracking-wider md:font-bold flex`}>
+        <nav className={`py-2 tracking-wider flex`}>
             <button className={`primary md:hidden`}
                     onClick={() => setShowNav(!showNav)}>
                 {showNav ? "Close" : "Menu"}
@@ -65,7 +65,7 @@ const Navigation = () => {
                         </li>
                         <li className={`mb-2 md:mb-0 group relative md:pr-0 cursor-pointer`}>
                             <span className={`hidden md:block p-2`}>Account</span>
-                            <ul className={"md:hidden md:group-hover:block md:absolute top-5 md:top-10 bg-dark rounded md:p-2"}>
+                            <ul className={"md:hidden md:group-hover:block md:absolute top-5 md:top-10 bg-dark md:p-2"}>
                                 <li className={`mb-2 md:mb-0`}>
                                     <Link href="/profile">
                                         <a className={`p-2 text-white hover:text-brand hover:no-underline`}>
@@ -80,10 +80,10 @@ const Navigation = () => {
                                         </a>
                                     </Link>
                                 </li>
+                                <li>
+                                    <button className={`ml-2`} onClick={signOut}>Sign out</button>
+                                </li>
                             </ul>
-                        </li>
-                        <li>
-                            <button className={`ml-2`} onClick={signOut}>Sign out</button>
                         </li>
                     </>
                 }

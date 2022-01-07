@@ -7,12 +7,11 @@ const MovieCard = ({movie, asLink}) => {
     const MC = () => {
         return (
             <div className={`relative hover:shadow cursor-pointer`}>
-                <div className={`bg-brand rounded`}>
+                <div className={`bg-brand`}>
                     {movie.poster_path ?
                         <img
                             src={`${IMAGE_PATH}/${movie.poster_path}`}
                             alt={`${title} cover`}
-                            className={`rounded`}
                         />
                         : "No image"
                     }
@@ -22,7 +21,7 @@ const MovieCard = ({movie, asLink}) => {
                     {movie.vote_average}
                 </div>
                 <div
-                    className={`rounded-b text-center absolute bottom-0 h-14 p-1 flex justify-center items-center bg-dark text-white tracking-wider w-full`}>
+                    className={`text-center absolute bottom-0 h-14 p-1 flex justify-center items-center bg-dark text-white tracking-wider w-full`}>
                     {title}
                 </div>
             </div>

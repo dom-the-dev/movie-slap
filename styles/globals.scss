@@ -64,5 +64,8 @@ p {
 }
 
 body {
+  background: #E0EAFC;
+  background: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);
+  background: linear-gradient(to right, #CFDEF3, #E0EAFC);
   box-sizing: border-box;
 }
