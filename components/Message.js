@@ -13,7 +13,7 @@ const Message = ({message, type}) => {
         default: style = style = error;
     }
     return (
-        <div className={`mb-10 block border p-5 rounded font-bold  ${style}`}>
+        <div className={`text-center mb-10 block border p-5 rounded font-bold  ${style}`}>
             {message}
         </div>
     );
@@ -23,5 +23,9 @@ Message.propTypes = {
     message: PropTypes.string.isRequired,
     type: PropTypes.string
 };
+
+Message.defaultProps = {
+    type: "warning"
+}
 
 export default Message;

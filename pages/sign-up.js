@@ -32,6 +32,7 @@ const SignUp = ({logout}) => {
         if (error) {
             console.log({error})
         } else {
+            console.log(data)
             setSubmitted(true)
         }
     }

@@ -3,14 +3,18 @@ import {supabase} from "../lib/initSupabase";
 import Image from "next/image";
 import SimpleHeader from "../components/SimpleHeader";
 import Layout from "../components/Layout";
+import Message from "../components/Message";
 
 
 const Profile = ({user}) => {
     const [website, setWebsite] = useState("");
     const [username, setUsername] = useState("");
     const [avatarUrl, setAvatarUrl] = useState("");
-    const [message, setMessage] = useState("");
+    const [message, setMessage] = useState({});
     const [image, setImage] = useState("");
+    const [changePassword, setChangePassowrd] = useState(false)
+    const [confirmNewPassword, setConfirmNewPassword] = useState("")
+    const [newPassword, setNewpassword] = useState("")
 
     useEffect(() => {
         getProfile()
@@ -72,16 +76,42 @@ const Profile = ({user}) => {
         }
 
         if (data) {
-            setMessage("Profile has been updated!")
+            setMessage({message: "Profile has been updated!", type: "success"})
+        }
+
+    }
+
+    async function updatePassword(e) {
+        e.preventDefault()
+
+        if (newPassword !== confirmNewPassword) {
+            setMessage({message: "Passwords do not match", type: "warning"})
+            return
+        }
+
+        const {user, error} = await supabase.auth.update({password: newPassword})
+
+        if (error) {
+            console.error(error)
+            setMessage({message: "Something went wrong", type: "error"})
+        }
+
+        if (user) {
+            setMessage({message: "Password has been updated", type: "success"})
+            setNewpassword("")
+            setConfirmNewPassword("")
         }
 
     }
 
     return (
         <Layout title={"Profile"}>
+            {message && message.message && <Message message={message.message} type={message.type}/>}
+
             <SimpleHeader text={"Profile"}/>
 
             <form onSubmit={handleSubmit} className={"form-wrapper"}>
+                <h2>User Data</h2>
 
                 {avatarUrl ?
                     <Image src={`${process.env.NEXT_PUBLIC_SUPABASE_STORAGE}${avatarUrl}`} alt="Avatar" width={150}
@@ -136,6 +166,17 @@ const Profile = ({user}) => {
                     <button className={"primary button button--fluid"} type={"submit"}>Save Profile</button>
                 </div>
             </form>
+
+            <button className={`secondary`} onClick={() => setChangePassowrd(!changePassword)}>{changePassword ? "Don't change " : "Change "} Password</button>
+
+            {changePassword &&
+                <form onSubmit={updatePassword}>
+                    <h2>Set new password</h2>
+                    <input type="password" onChange={e => setNewpassword(e.target.value)}/>
+                    <input type="password" onChange={e => setConfirmNewPassword(e.target.value)}/>
+                    <button type={"submit"} className={`primary`}>Change Password</button>
+                </form>
+            }
         </Layout>
     );
 };
