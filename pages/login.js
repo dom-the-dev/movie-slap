@@ -73,9 +73,7 @@ const Login = () => {
 
                 {!forgotPassword &&
                     <div>
-                        <p>Did you signed up with magic link? Login with your email again. In your profile you can set
-                            new a
-                            password.</p>
+                        <p>Did you signed up with magic link? Login with your email again. You can set a new password in your profile.</p>
                         <div className={"my-2"}>
                             <input className={`w-10 scale-150`} type="checkbox" id="checkbox"
                                    onChange={() => setMagicLink(!magicLink)}/>
