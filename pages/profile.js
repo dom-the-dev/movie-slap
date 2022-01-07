@@ -26,7 +26,9 @@ const Profile = ({user}) => {
             console.log(error)
         }
 
-        if (data) {
+        console.log(data)
+
+        if (data && data.length) {
             setWebsite(data[0].website)
             setUsername(data[0].username)
             setAvatarUrl(data[0].avatar_url)
@@ -75,18 +77,9 @@ const Profile = ({user}) => {
 
     }
 
-    async function removeCookie() {
-        await fetch("/api/remove", {
-            method: "GET",
-            credentials: "same-origin"
-        })
-    }
-
     return (
         <Layout title={"Profile"}>
             <SimpleHeader text={"Profile"}/>
-
-            <button className="primary" onClick={removeCookie}>Clear cookie</button>
 
             <form onSubmit={handleSubmit} className={"form-wrapper"}>
 

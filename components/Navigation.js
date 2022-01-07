@@ -37,13 +37,23 @@ const Navigation = () => {
                 </li>
 
                 {!user ?
-                    <li className={`mb-2 md:mb-0`}>
-                        <Link href="/sign-up">
-                            <a className={`p-2 hover:text-brand`}>
-                                Sign Up
-                            </a>
-                        </Link>
-                    </li>
+                    <>
+                        <li className={`mb-2 md:mb-0`}>
+                            <Link href="/login">
+                                <a className={`p-2 hover:text-brand`}>
+                                    Login
+                                </a>
+                            </Link>
+                        </li>
+                        <li className={`mb-2 md:mb-0`}>
+                            <Link href="/sign-up">
+                                <a className={`p-2 hover:text-brand`}>
+                                    Sign Up
+                                </a>
+                            </Link>
+                        </li>
+                    </>
+
                     :
                     <>
                         <li className={`mb-2 md:mb-0`}>

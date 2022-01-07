@@ -6,6 +6,7 @@ import SimpleHeader from "../components/SimpleHeader";
 
 const SignUp = ({logout}) => {
     const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
     const [submitted, setSubmitted] = useState(false)
     const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -23,8 +24,9 @@ const SignUp = ({logout}) => {
         e.preventDefault()
         if (!email) return
 
-        const {error, data} = await supabase.auth.signIn({
-            email
+        const {error, data} = await supabase.auth.signUp({
+            email,
+            password
         })
 
         if (error) {
@@ -41,14 +43,22 @@ const SignUp = ({logout}) => {
             <SimpleHeader text={"Sign Up"}/>
 
             {!isSubmitting &&
-                <form onSubmit={signIn} className={`flex flex-col`}>
+                <form onSubmit={signIn} className={`flex flex-col md:w-1/2 mx-auto`}>
                     <input
-                        className={`border-2`}
+                        className={`border-2 my-1`}
                         type="text"
+                        required
                         placeholder={"Email"}
                         onChange={e => setEmail(e.target.value)}
                     />
-                    <button className={`primary`} type={"submit"}>Send</button>
+                    <input
+                        className={`border-2 my-1`}
+                        required
+                        type="password"
+                        placeholder={"Password"}
+                        onChange={e => setPassword(e.target.value)}
+                    />
+                    <button className={`primary mt-1`} type={"submit"}>Send</button>
                 </form>
             }
         </Layout>

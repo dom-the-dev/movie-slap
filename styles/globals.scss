@@ -49,6 +49,7 @@
 
   textarea,
   input[type="text"],
+  input[type="password"],
   input[type="email"], {
     @apply border rounded p-2;
   }
