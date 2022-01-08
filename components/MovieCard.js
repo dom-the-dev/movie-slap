@@ -7,7 +7,7 @@ const MovieCard = ({movie, asLink}) => {
     const MC = () => {
         return (
             <div className={`relative cursor-pointer mr-5`}>
-                <div className={`bg-brand`}>
+                <div className={`bg-brand rounded-3xl`}>
                     {movie.poster_path ?
                         <img
                             className={`rounded-3xl`}

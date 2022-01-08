@@ -9,14 +9,9 @@ import {RiFeedbackLine} from "react-icons/ri";
 
 const Navigation = () => {
     const {user} = useUser()
-    const [showNav, setShowNav] = useState(false)
 
     return (
         <nav className={`px-5`}>
-            <button className={`primary md:hidden`}
-                    onClick={() => setShowNav(!showNav)}>
-                {showNav ? "Close" : "Menu"}
-            </button>
             <div className={"mb-2 mt-7 text-xs"}>
                 <span>Menu</span>
             </div>
