@@ -9,9 +9,6 @@ export default function Home({user}) {
     const BACKDROP_PATH = "https://image.tmdb.org/t/p/w1280"
     const [movies, setMovies] = useState([])
     const [shows, setShows] = useState([])
-    const [page, setPage] = useState(1)
-    const [maxPage, setMaxPage] = useState(null)
-
 
     useEffect(() => {
         fetchMovies(1, "movie")
@@ -27,14 +24,6 @@ export default function Home({user}) {
         } else {
             setShows(data.movies)
         }
-
-        setPage(data.page)
-        setMaxPage(data.pages)
-    }
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
 
     }
 

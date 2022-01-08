@@ -2,8 +2,6 @@ import axios from "axios";
 
 const MOVIE_API = "https://api.themoviedb.org/3"
 
-// /certification/movie/list
-
 export async function fetchTrending(page = 1, type = "movie") {
     try {
 
@@ -69,8 +67,8 @@ export const fetchMovie = async (id, type) => {
     return data
 }
 
-export const getMovieProvider = async (id) => {
-    const {data} = await axios.get(`${MOVIE_API}/movie/${id}/watch/providers`, {
+export const getMovieProvider = async (id, type) => {
+    const {data} = await axios.get(`${MOVIE_API}/${type}/${id}/watch/providers`, {
         params: {
             api_key: process.env.NEXT_PUBLIC_MOVIE_API_KEY
         }

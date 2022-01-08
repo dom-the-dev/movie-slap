@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const WatchlistItem = ({movie, handleWatched, handleDeleteFromWatchlist}) => {
     const title = movie.media_type === "tv" ? movie.name : movie.title
-    const IMAGE_PATH = "https://image.tmdb.org/t/p/w92"
+    const IMAGE_PATH = process.env.NEXT_PUBLIC_MOVIE_COVER_SMALL
     const director = movie.credits.crew.filter(person => person.job === "Director")[0]
 
     let hours = (movie.runtime / 60);
