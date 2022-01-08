@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Layout from "../components/Layout";
 import SimpleHeader from "../components/SimpleHeader";
 import {supabase} from "../lib/initSupabase";

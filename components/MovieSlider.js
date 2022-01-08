@@ -29,22 +29,23 @@ const MovieSlider = ({movies, title}) => {
                 settings: {
                     slidesToShow: 4,
                     slidesToScroll: 4,
-                    infinite: true,
-                    dots: true
+                    infinite: true
                 }
             },
             {
                 breakpoint: 600,
                 settings: {
                     slidesToShow: 3,
-                    slidesToScroll: 3
+                    slidesToScroll: 3,
+                    dots: false
                 }
             },
             {
                 breakpoint: 480,
                 settings: {
                     slidesToShow: 2,
-                    slidesToScroll: 2
+                    slidesToScroll: 2,
+                    dots: false
                 }
             }
         ]
@@ -62,11 +63,11 @@ const MovieSlider = ({movies, title}) => {
             <div className={`flex justify-between items-center mb-4`}>
                 <h4>{title}</h4>
                 <div>
-                    <button className={`mr-2 bg-brand text-white hover:text-dark`} onClick={() => prev()}>
+                    <button className={`mr-2 bg-white text-dark hover:text-brand border-white`} onClick={() => prev()}>
                         <span className="sr-only">prev</span>
                         <AiFillCaretLeft/>
                     </button>
-                    <button className={`bg-brand text-white hover:text-dark`} onClick={() => next()}>
+                    <button className={`bg-white text-dark hover:text-brand border-white`} onClick={() => next()}>
                         <AiFillCaretRight/>
                         <span className="sr-only">next</span>
                     </button>
