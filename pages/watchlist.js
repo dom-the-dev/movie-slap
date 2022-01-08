@@ -93,7 +93,7 @@ const Watchlist = ({user}) => {
                         <th className={`pl-5 pb-5`}>Name</th>
                         <th className={`pb-5`}>Director</th>
                         <th className={`pb-5`}>Genre</th>
-                        <th className={`pb-5`}>Year</th>
+                        <th className={`pb-5 text-center`}>Year</th>
                         <th className={`pb-5 text-center`}>Runtime</th>
                         <th className={`text-center pb-5`}>Actions</th>
                     </tr>

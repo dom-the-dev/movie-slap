@@ -10,7 +10,12 @@ const WatchlistItem = ({movie, handleWatched, handleDeleteFromWatchlist}) => {
     const IMAGE_PATH = "https://image.tmdb.org/t/p/w92"
     const director = movie.credits.crew.filter(person => person.job === "Director")[0]
 
-    console.log(movie)
+    let hours = (movie.runtime / 60);
+    let rhours = Math.floor(hours);
+    let minutes = (hours - rhours) * 60;
+    let rminutes = Math.round(minutes);
+    const runtime = rhours + ":" + rminutes
+
     const renderGenres = () => {
         return movie.genres.map((genre, index) => {
             return <span key={genre.id + index}>{`${genre.name}${index < movie.genres.length - 1 ? ", " : " "}`}</span>
@@ -45,8 +50,8 @@ const WatchlistItem = ({movie, handleWatched, handleDeleteFromWatchlist}) => {
             </td>
             <td className={`pb-5 w-40`}>{director.name}</td>
             <td className={`pb-5 text-xs w-40`}>{renderGenres()}</td>
-            <td className={`pb-5 w-10`}>{new Date(movie.release_date).getFullYear()}</td>
-            <td className={`pb-5 text-center`}>{movie.runtime}</td>
+            <td className={`px-2 pb-5 w-20 text-center`}>{new Date(movie.release_date).getFullYear()}</td>
+            <td className={`pb-5 text-center`}>{runtime}</td>
             <td className={`pb-5 text-center`}>
                 <button className={"bg-white border-none hover:text-brand p-1 text-center mr-2"}
                         title={!movie.watched ? "Mark as Watched" : "Unwatch"}
