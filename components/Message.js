@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
 const Message = ({message, type}) => {
@@ -13,7 +12,7 @@ const Message = ({message, type}) => {
         default: style = style = error;
     }
     return (
-        <div className={`text-center mb-10 block border p-5 font-bold  ${style}`}>
+        <div className={`rounded-3xl text-white uppercase tracking-wider text-center mb-10 block border p-3 font-bold ${style}`}>
             {message}
         </div>
     );

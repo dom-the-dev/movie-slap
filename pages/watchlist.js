@@ -7,25 +7,10 @@ import SimpleHeader from "../components/SimpleHeader";
 import Layout from "../components/Layout";
 import WatchlistItem from "../components/WatchlistItem";
 
-export async function getServerSideProps({req}) {
-    const {user} = await supabase.auth.api.getUserByCookie(req)
-
-    if (!user) {
-        await supabase.auth.signOut()
-        return {props: {}, redirect: {destination: '/sign-up'}}
-    }
-
-    return {
-        props: {
-            user
-        }
-    }
-}
-
 const Watchlist = ({user}) => {
     const [watchList, setWatchList] = useState([])
     const [loading, setLoading] = useState(true)
-    const [message, setMessage] = useState({type: "", message: ""})
+    const [message, setMessage] = useState({})
 
     useEffect(() => {
         fetchMovies()
@@ -38,6 +23,7 @@ const Watchlist = ({user}) => {
         for (const movie of watchtList) {
             let mov = await getMovie(movie.movie_id, movie.type)
             mov.watched = movie.watched
+            mov.type = movie.type
             movies.push(mov)
         }
 
@@ -56,7 +42,7 @@ const Watchlist = ({user}) => {
 
         if (res.data) {
             fetchMovies()
-            let msg = message
+            let msg = {}
 
             if (watched) {
                 msg.message = "Marked as watched"
@@ -73,42 +59,67 @@ const Watchlist = ({user}) => {
     async function handleDeleteFromWatchlist(movieId) {
         const res = await deleteFromWatchlist(user.id, movieId)
 
-        if (res.error) setMessage(res.error.message)
+        if (res.error) {
+            setMessage(res.error.message)
+        }
         if (res.data) {
             fetchMovies()
-            setMessage('Movie deleted from watchlist')
+            setMessage({message: "Movie deleted from watchlist", type: "warning"})
         }
     }
 
     const renderWatchlist = () => (
         watchList.map(movie => (
-            <div key={movie.id}>
-                <WatchlistItem
-                    movie={movie}
-                />
-
-                <div className={"button-wrapper"}>
-                    <button className={"primary w-full my-1"}
-                            onClick={() => handleWatched(movie.id, !movie.watched)}>{`${!movie.watched ? "Mark as Watched" : "Unwatch"}`}
-                    </button>
-                    <button className={"secondary w-full my-1"}
-                            onClick={() => handleDeleteFromWatchlist(movie.id)}>Delete from
-                        Watch List
-                    </button>
-                </div>
-            </div>
+            <WatchlistItem
+                key={movie.id}
+                movie={movie}
+                handleDeleteFromWatchlist={handleDeleteFromWatchlist}
+                handleWatched={handleWatched}
+            />
         ))
     )
 
     return (
         <Layout title={"Watchlist"}>
             {message.message && <Message message={message.message} type={message.type}/>}
+
             <SimpleHeader text={"Your Watchlist"}/>
-            <div className="container mx-auto grid grid-cols-1  gap-3">
-                {loading ? "loading your watchlist" : renderWatchlist()}
-            </div>
+            {loading ? "loading your watchlist" :
+
+                <table className={`w-full text-left`}>
+                    <thead className={``}>
+                    <tr>
+                        <th className={`text-center w-20 pb-5`}>Cover</th>
+                        <th className={`pl-5 pb-5`}>Name</th>
+                        <th className={`pb-5`}>Director</th>
+                        <th className={`pb-5`}>Genre</th>
+                        <th className={`pb-5`}>Year</th>
+                        <th className={`pb-5 text-center`}>Runtime</th>
+                        <th className={`text-center pb-5`}>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {renderWatchlist()}
+                    </tbody>
+                </table>
+            }
         </Layout>
     );
 };
 
 export default Watchlist;
+
+export async function getServerSideProps({req}) {
+    const {user} = await supabase.auth.api.getUserByCookie(req)
+
+    if (!user) {
+        await supabase.auth.signOut()
+        return {props: {}, redirect: {destination: '/sign-up'}}
+    }
+
+    return {
+        props: {
+            user
+        }
+    }
+}
