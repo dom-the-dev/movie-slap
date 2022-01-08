@@ -110,73 +110,103 @@ const Profile = ({user}) => {
 
             <SimpleHeader text={"Profile"}/>
 
-            <form onSubmit={handleSubmit} className={"form-wrapper"}>
-                <h2>User Data</h2>
+            <div className={`md:w-1/2 mx-auto`}>
+                <form onSubmit={handleSubmit} className={`mb-10`}>
 
-                {avatarUrl ?
-                    <Image src={`${process.env.NEXT_PUBLIC_SUPABASE_STORAGE}${avatarUrl}`} alt="Avatar" width={150}
-                           height={150}/>
-                    :
-                    "No Avatar"
-                }
+                    <div className={`text-center`}>
 
-                <div className={"form-group"}>
-                    <label
-                        className={"label"}
-                        htmlFor="avatar">
-                        Upload image
-                    </label>
-                    <input
-                        type="file"
-                        accept="image/png, image/jpeg"
-                        id="avatar"
-                        name="avatar"
-                        className={""}
-                        onChange={e => setImage(e.target.files[0])}
-                    />
-                </div>
+                    {avatarUrl ?
+                        <Image src={`${process.env.NEXT_PUBLIC_SUPABASE_STORAGE}${avatarUrl}`}
+                               alt="Avatar"
+                               width={150}
+                               height={150}
+                               className={`rounded-3xl`}
+                        />
+                        :
+                        "No Avatar"
+                    }
+                    </div>
 
-                <div className={"form-group"}>
-                    <label
-                        className={"label"}
-                        htmlFor="username">
-                        Username
-                    </label>
-                    <input type="text"
-                           value={username}
-                           className="input input--fluid"
-                           placeholder={"Username"}
-                           onChange={e => setUsername(e.target.value)}
-                    />
-                </div>
+                    <div className={"mb-2"}>
+                        <label
+                            className={"font-bold text-xs ml-5 text-brand"}
+                            htmlFor="avatar">
+                            Upload image
+                        </label>
+                        <input
+                            type="file"
+                            accept="image/png, image/jpeg"
+                            id="avatar"
+                            name="avatar"
+                            className={"block border-none"}
+                            onChange={e => setImage(e.target.files[0])}
+                        />
+                    </div>
 
-                <div className={"form-group"}>
-                    <label className={"label"} htmlFor="username">
-                        Website
-                    </label>
-                    <input type="text"
-                           value={website}
-                           placeholder={"Website"}
-                           className="input input--fluid"
-                           onChange={e => setWebsite(e.target.value)}
-                    />
-                </div>
+                    <div className={"mb-2 relative"}>
+                        <label
+                            className={"font-bold text-xs ml-5 text-brand"}
+                            htmlFor="username">
+                            Username
+                        </label>
+                        <input type="text"
+                               value={username}
+                               className={`block w-full`}
+                               placeholder={"Username"}
+                               onChange={e => setUsername(e.target.value)}
+                        />
+                    </div>
 
-                <div className="form-group">
-                    <button className={"primary button button--fluid"} type={"submit"}>Save Profile</button>
-                </div>
-            </form>
+                    <div className={"mb-2 relative"}>
+                        <label
+                            className={"font-bold text-xs ml-5 text-brand"}
+                            htmlFor="username"
+                        >
+                            Website
+                        </label>
+                        <input type="text"
+                               value={website}
+                               placeholder={"Website"}
+                               className={`block w-full`}
+                               onChange={e => setWebsite(e.target.value)}
+                        />
+                    </div>
 
-            <button className={`secondary`} onClick={() => setChangePassowrd(!changePassword)}>{changePassword ? "Don't change " : "Change "} Password</button>
-
-            {changePassword &&
-                <form onSubmit={updatePassword}>
-                    <h2>Set new password</h2>
-                    <input type="password" onChange={e => setNewpassword(e.target.value)}/>
-                    <input type="password" onChange={e => setConfirmNewPassword(e.target.value)}/>
-                    <button type={"submit"} className={`primary`}>Change Password</button>
+                    <button className={"primary w-full"} type={"submit"}>Save Profile</button>
                 </form>
-            }
+
+                <div className={`mt-4 mb-6`}>
+                    <input
+                        id="pass"
+                        name="pass"
+                        type="checkbox"
+                        className={`ml-2 mr-5 scale-150  cursor-pointer`}
+                        value={!changePassword ? "checked" : ""}
+                        onChange={() => setChangePassowrd(!changePassword)}
+                    />
+                    <label htmlFor="pass" className={`cursor-pointer`}>Do you want so change your password?</label>
+                </div>
+
+                {changePassword &&
+                    <>
+                        <h4
+                            className={"font-bold text-xs ml-5 text-brand"}>Set new password</h4>
+                        <form onSubmit={updatePassword} className={`flex flex-col`}>
+                            <input className={`mb-2`}
+                                   type="password"
+                                   placeholder={"New Password"}
+                                   onChange={e => setNewpassword(e.target.value)}
+                            />
+                            <input className={`mb-2`}
+                                   type="password"
+                                   placeholder={"Confirm Password"}
+                                   onChange={e => setConfirmNewPassword(e.target.value)}
+                            />
+                            <button type={"submit"} className={`primary mt-0`}>Change Password</button>
+                        </form>
+                    </>
+                }
+            </div>
         </Layout>
     );
 };

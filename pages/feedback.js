@@ -43,12 +43,12 @@ const Feedback = () => {
 
             {submitting && <div>is submitting</div>}
             <div className={`max-w-xl mx-auto`}>
-                <form onSubmit={handleOnSubmit}>
-                    <input className={`w-full my-2`} required type="email" name="email" placeholder="Your Email"/> <br/>
-                    <input className={`w-full my-2`} required type="text" name="name" placeholder="Your Name"/><br/>
-                    <textarea className={`w-full my-2 h-24`} required type="text" name="message"
-                              placeholder="Your Message"/> <br/>
-                    <button className={`primary`} type="submit">Send</button>
+                <form onSubmit={handleOnSubmit} className={`flex flex-col`}>
+                    <input className={`my-1`} required type="email" name="email" placeholder="Your Email"/>
+                    <input className={`my-1`} required type="text" name="name" placeholder="Your Name"/>
+                    <textarea className={`my-1 h-24`} required type="text" name="message"
+                              placeholder="Your Message"/>
+                    <button className={`primary mt-1`} type="submit">Send</button>
                 </form>
             </div>
         </Layout>
