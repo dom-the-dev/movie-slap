@@ -89,7 +89,5 @@ export const searchApi = async (type = "movie", query = "", page = 1) => {
         }
     })
 
-    console.log('dd',data)
-
     return data
 }

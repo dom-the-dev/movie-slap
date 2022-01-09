@@ -4,10 +4,11 @@ import {useRouter} from "next/router";
 import {searchApi} from "../helper/movies";
 import SearchResultsList from "../components/SearchResultsList";
 import {BiSkipNext, BiSkipPrevious} from "react-icons/bi";
+import SearchBar from "../components/SearchBar";
+import {AiFillCaretLeft, AiFillCaretRight} from "react-icons/ai";
 
 const Search = () => {
     const router = useRouter()
-    const {query} = router.query
     const [searchQuery, setSearchQuery] = useState("");
     const [results, setResults] = useState([]);
     const [type, setType] = useState("movie");
@@ -34,21 +35,22 @@ const Search = () => {
         return (
             <div className={`my-5 flex justify-end`}>
                 <button
+                    className={`mr-2 bg-white text-dark hover:text-brand border-white`}
                     disabled={page <= 1}
-                    onClick={() => fetchResults(searchQuery, page - 1)}
                     title={"previous page"}
-                    className={`text-dark bg-white border-none text-3xl p-1 hover:text-brand disabled:hover:text-dark`}
+                    onClick={() => fetchResults(searchQuery, page - 1)}
                 >
-                    <BiSkipPrevious/>
+                    <span className="sr-only">prev</span>
+                    <AiFillCaretLeft/>
                     <span className="sr-only">previous page</span>
                 </button>
                 <button
-                    disabled={page >= maxPages}
+                    className={`bg-white text-dark hover:text-brand border-white`}
                     onClick={() => fetchResults(searchQuery, page + 1)}
+                    disabled={page >= maxPages}
                     title={"next page"}
-                    className={`text-dark bg-white border-none text-3xl p-1 hover:text-brand disabled:hover:text-dark`}
                 >
-                    <BiSkipNext/>
+                    <AiFillCaretRight/>
                     <span className="sr-only">next page</span>
                 </button>
             </div>
@@ -69,24 +71,13 @@ const Search = () => {
                 className={`h-40 sm:h-56 md:h-64 bg-light mb-7 bg-fixed bg-top bg-contain p-10 rounded-3xl flex flex-col items-center justify-center`}
             >
                 <h1 className={`text-white`}>Search for any movie or tv show</h1>
-                <form className={`w-3/4 mt-5 relative`} onSubmit={handleSearch}>
-                    <input
-                        className={`w-full`}
-                        type="text"
-                        value={searchQuery}
-                        placeholder={"Search anything"}
-                        onChange={e => setSearchQuery(e.target.value)}
-                    />
-                    <button type={"search"} className={`absolute right-0 hover:bg-brand hover:text-white`}>
-                        Search
-                    </button>
-                </form>
+                <SearchBar handleSearch={handleSearch} query={searchQuery} setQuery={setSearchQuery}/>
             </div>
 
 
             {results.length && maxPages > 1 ? <Pagination/> : null}
 
-            <div className={`grid gap-1 grid-cols-5`}>
+            <div className={`grid gap-5 grid-cols-2 sm:grid-cols-4 md:grid-cols-5`}>
                 <SearchResultsList type={type} results={results}/>
             </div>
 

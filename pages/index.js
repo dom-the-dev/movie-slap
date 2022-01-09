@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react";
-import {fetchTrending, searchMovies as searchMovieApi} from "../helper/movies";
+import {fetchTrending} from "../helper/movies";
 import {supabase} from "../lib/initSupabase";
 import Layout from "../components/Layout";
 import MovieSlider from "../components/MovieSlider";
 import {useRouter} from "next/router";
+import SearchBar from "../components/SearchBar";
 
 export default function Home({user}) {
     const router = useRouter()
@@ -46,17 +47,8 @@ export default function Home({user}) {
                 }
             >
                 <h1 className={`text-white`}>Welcome to Movie Slap</h1>
-                <form className={`w-3/4 mt-5 relative`} onSubmit={handleSearch}>
-                    <input
-                        className={`w-full`}
-                        type="text"
-                        placeholder={"Search anything"}
-                        onChange={e => setQuery(e.target.value)}
-                    />
-                    <button type={"search"} className={`absolute right-0 hover:bg-brand hover:text-white`}>
-                        Search
-                    </button>
-                </form>
+                <SearchBar handleSearch={handleSearch} query={query} setQuery={setQuery}/>
+
             </div>
 
 

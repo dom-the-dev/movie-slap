@@ -6,8 +6,8 @@ const MovieCard = ({movie, asLink, type}) => {
 
     const MC = () => {
         return (
-            <div className={`relative cursor-pointer mr-5`}>
-                <div className={`rounded-3xl bg-brand flex justify-center items-center text-dark `}>
+            <div className={`relative cursor-pointer`}>
+                <div className={`rounded-3xl ${!movie.poster_path && "bg-brand"} flex justify-center items-center text-dark `}>
                     {movie.poster_path ?
                         <img
                             className={`rounded-3xl`}
