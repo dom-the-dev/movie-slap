@@ -18,7 +18,7 @@ const MovieHero = ({movie, type}) => {
             }
         >
             <h1 className={`text-white`}>{title}</h1>
-            {movie.tagline && <h2>{movie.tagline}</h2>}
+            {movie.tagline && <h2 className={`text-white`}>{movie.tagline}</h2>}
             <div>
                 {renderGenres()}
             </div>
