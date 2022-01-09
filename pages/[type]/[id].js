@@ -31,7 +31,7 @@ const Movie = ({user, movie, type}) => {
 
                 <div className={`w-2/3`}>
                     <h4>Overview</h4>
-                    {movie.overview && <p className={`mt-0`}>{movie.overview}</p>}
+                    {movie.overview && <p className={`mt-0 text-white`}>{movie.overview}</p>}
 
                     {movie?.credits?.cast &&
                         <div>
