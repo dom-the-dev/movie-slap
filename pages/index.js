@@ -1,14 +1,16 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {fetchTrending, searchMovies as searchMovieApi} from "../helper/movies";
 import {supabase} from "../lib/initSupabase";
 import Layout from "../components/Layout";
-import SimpleHeader from "../components/SimpleHeader";
 import MovieSlider from "../components/MovieSlider";
+import {useRouter} from "next/router";
 
 export default function Home({user}) {
+    const router = useRouter()
     const BACKDROP_PATH = "https://image.tmdb.org/t/p/w1280"
     const [movies, setMovies] = useState([])
     const [shows, setShows] = useState([])
+    const [query, setQuery] = useState("");
 
     useEffect(() => {
         fetchMovies(1, "movie")
@@ -27,15 +29,34 @@ export default function Home({user}) {
 
     }
 
+    const handleSearch = (e) => {
+        e.preventDefault()
+        router.push({
+            pathname: "/search",
+            query: {query}
+        });
+    }
+
     return (
         <Layout title={"Home"}>
 
             <div
-                className={`h-40 sm:h-56 md:h-64 bg-light mb-7 bg-fixed bg-top bg-contain p-10  flex justify-center items-center rounded-3xl`}
+                className={`h-40 sm:h-56 md:h-64 bg-light mb-7 bg-fixed bg-top bg-contain p-10 rounded-3xl flex flex-col items-center justify-center`}
                 style={movies[0] && {backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)) , url(${BACKDROP_PATH}${movies[0].backdrop_path})`}
                 }
             >
-                <SimpleHeader text={"Welcome to Movie Slap"} textColor={"text-white"}/>
+                <h1 className={`text-white`}>Welcome to Movie Slap</h1>
+                <form className={`w-3/4 mt-5 relative`} onSubmit={handleSearch}>
+                    <input
+                        className={`w-full`}
+                        type="text"
+                        placeholder={"Search anything"}
+                        onChange={e => setQuery(e.target.value)}
+                    />
+                    <button type={"search"} className={`absolute right-0 hover:bg-brand hover:text-white`}>
+                        Search
+                    </button>
+                </form>
             </div>
 
 

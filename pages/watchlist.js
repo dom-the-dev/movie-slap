@@ -114,7 +114,7 @@ export async function getServerSideProps({req}) {
 
     if (!user) {
         await supabase.auth.signOut()
-        return {props: {}, redirect: {destination: '/sign-up'}}
+        return {props: {}, redirect: {destination: '/login'}}
     }
 
     return {

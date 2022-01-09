@@ -218,7 +218,7 @@ export async function getServerSideProps({req}) {
 
     if (!user) {
         return {
-            props: {expired: true}, redirect: {destination: '/sign-up'}
+            props: {expired: true}, redirect: {destination: '/login'}
         }
     }
 

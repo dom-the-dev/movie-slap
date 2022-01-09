@@ -4,6 +4,7 @@ import NavItem from "./NavItem";
 import { AiOutlineSearch, AiOutlineHome } from "react-icons/ai";
 import { FaRegHandRock } from "react-icons/fa";
 import { BsEyeglasses, BsPlusCircle } from "react-icons/bs";
+import { BiMoviePlay } from "react-icons/bi";
 import { CgProfile, CgLogOut, CgLogIn } from "react-icons/cg";
 import {RiFeedbackLine} from "react-icons/ri";
 
@@ -17,14 +18,19 @@ const Navigation = () => {
             </div>
             <ul>
                 <NavItem
+                    href={"/"}
+                    title={"Home"}
+                    icon={<AiOutlineHome/>}
+                />
+                <NavItem
                     href={"/search"}
                     title={"Search"}
                     icon={<AiOutlineSearch/>}
                 />
                 <NavItem
-                    href={"/"}
-                    title={"Home"}
-                    icon={<AiOutlineHome/>}
+                    href={"/stream-check"}
+                    title={"Stream Check"}
+                    icon={<BiMoviePlay/>}
                 />
 
                 {user ?

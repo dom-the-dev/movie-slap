@@ -1,13 +1,13 @@
 import Link from "next/link";
 
-const MovieCard = ({movie, asLink}) => {
-    const title = movie.media_type === "tv" ? movie.name : movie.title
+const MovieCard = ({movie, asLink, type}) => {
+    const title = (movie.media_type || type) === "tv" ? movie.name : movie.title
     const IMAGE_PATH = process.env.NEXT_PUBLIC_MOVIE_COVER
 
     const MC = () => {
         return (
             <div className={`relative cursor-pointer mr-5`}>
-                <div className={`bg-brand rounded-3xl`}>
+                <div className={`rounded-3xl bg-brand flex justify-center items-center text-dark `}>
                     {movie.poster_path ?
                         <img
                             className={`rounded-3xl`}
@@ -31,7 +31,7 @@ const MovieCard = ({movie, asLink}) => {
 
     const AsLink = ({children}) => {
         return (
-            <Link href={`${movie.media_type}/${movie.id}`}>
+            <Link href={`${movie.media_type || type}/${movie.id}`}>
                 <a className={`hover:no-underline`}>
                     {children}
                 </a>

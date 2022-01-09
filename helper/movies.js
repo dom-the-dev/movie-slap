@@ -76,3 +76,20 @@ export const getMovieProvider = async (id, type) => {
 
     return data
 }
+
+
+
+export const searchApi = async (type = "movie", query = "", page = 1) => {
+    const {data} = await axios.get(`${MOVIE_API}/search/${type}`, {
+        params: {
+            api_key: process.env.NEXT_PUBLIC_MOVIE_API_KEY,
+            query,
+            include_adult: false,
+            page
+        }
+    })
+
+    console.log('dd',data)
+
+    return data
+}

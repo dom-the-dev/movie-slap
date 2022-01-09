@@ -7,6 +7,7 @@ import MovieCard from "../components/MovieCard";
 import Message from "../components/Message";
 import {addToWatchlist} from "../helper/watchlist";
 import Layout from "../components/Layout";
+import SlapItem from "../components/SlapItem";
 
 const MovieSlap = ({user}) => {
     const [loading, setLoading] = useState(true)
@@ -48,8 +49,7 @@ const MovieSlap = ({user}) => {
                     type: ""
                 })}
             >
-                <MovieCard
-                    asLink={false}
+                <SlapItem
                     movie={movie}
                 />
             </TinderCard>
@@ -75,7 +75,7 @@ export async function getServerSideProps({req}) {
     const {user} = await supabase.auth.api.getUserByCookie(req)
 
     if (!user) {
-        return {props: {}, redirect: {destination: '/sign-up'}}
+        return {props: {}, redirect: {destination: '/login'}}
     }
 
     return {

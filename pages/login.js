@@ -6,7 +6,7 @@ import {useRouter} from "next/router";
 import Message from "../components/Message";
 import Link from "next/link";
 
-const Login = () => {
+const Login = ({logout}) => {
     const router = useRouter()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -14,8 +14,17 @@ const Login = () => {
     const [magicLink, setMagicLink] = useState(false)
     const [magicEmail, setMagicEmail] = useState("")
     const [message, setMessage] = useState({})
-
     const [forgotEmail, setForgotEmail] = useState("")
+
+    useEffect(() => {
+        if (logout) {
+            signOut()
+        }
+    }, [])
+
+    async function signOut() {
+        await supabase.auth.signOut()
+    }
 
     async function signIn(e) {
         e.preventDefault()
@@ -34,7 +43,7 @@ const Login = () => {
         if (data) {
             setTimeout(() => {
                 router.push('/profile')
-            }, 1000)
+            }, 500)
         }
     }
 
@@ -139,6 +148,8 @@ export default Login;
 
 export async function getServerSideProps({req}) {
     const {user} = await supabase.auth.api.getUserByCookie(req)
+
+    console.log('user', user)
 
     if (user) return {props: {}, redirect: {destination: '/profile'}}
 

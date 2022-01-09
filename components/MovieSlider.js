@@ -16,13 +16,13 @@ const MovieSlider = ({movies, title}) => {
 
     const settings = {
         infinite: true,
-        speed: 500,
+        speed: 300,
         dots: true,
         autoplay: true,
         draggable: false,
         arrows: false,
-        slidesToShow: 5,
-        slidesToScroll: 5,
+        slidesToShow: 6,
+        slidesToScroll: 6,
         responsive: [
             {
                 breakpoint: 1024,
