@@ -7,7 +7,7 @@ const MovieHero = ({movie, type}) => {
 
     const renderGenres = () => {
         return movie.genres.map((genre, index) => {
-            return <span key={genre.id + index}>{`${genre.name}${index < movie.genres.length - 1 ? ", " : " "}`}</span>
+            return <span className={`text-white`} key={genre.id + index}>{`${genre.name}${index < movie.genres.length - 1 ? ", " : " "}`}</span>
         })
     }
 

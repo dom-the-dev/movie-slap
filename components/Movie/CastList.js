@@ -18,10 +18,9 @@ const CastList = ({cast}) => {
         infinite: true,
         speed: 500,
         dots: true,
-        autoplay: true,
         draggable: false,
         arrows: false,
-        slidesToShow: 10,
+        slidesToShow: 8,
         slidesToScroll: 2,
         responsive: [
             {
