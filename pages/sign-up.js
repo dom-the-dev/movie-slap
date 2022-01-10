@@ -31,10 +31,9 @@ const SignUp = ({logout}) => {
         })
 
         if (error) {
-            console.log({error})
+            console.error(error)
             setMessage({message: error.message ? error.message : "Something went wrong", type: "error"})
         } else {
-            console.log(data)
             setMessage({message: "Confirmation link has beent sent", type: "success"})
             setEmail("")
             setPassword("")

@@ -13,7 +13,6 @@ const Slap = ({user}) => {
     const [message, setMessage] = useState({type: "", message: ""})
 
     useEffect(() => {
-        console.log('yes')
         getNextMovie("movie")
     }, []);
 
@@ -24,7 +23,7 @@ const Slap = ({user}) => {
 
     async function getRandomMovie(id, type) {
         const movie = await fetchMovie(Math.floor(Math.random() * id), type)
-        console.log('movie', movie)
+
         if (movie && !movie.adult) {
             setMovie(movie)
         } else {

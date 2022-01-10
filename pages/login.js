@@ -58,7 +58,6 @@ const Login = ({logout}) => {
             console.error(error)
             setMessage({message: error.message ? error.message : "Something went wrong", type: "error"})
         } else {
-            console.log('data', data)
             setMessage({message: "Login link has been sent", type: "success"})
             setMagicEmail("")
             setMagicLink(false)
@@ -76,7 +75,6 @@ const Login = ({logout}) => {
         }
 
         if (data) {
-            console.log(data)
             setMessage({message: "Password reconvery link has been sent.", type: "success"})
         }
     }
@@ -153,8 +151,6 @@ export default Login;
 
 export async function getServerSideProps({req}) {
     const {user} = await supabase.auth.api.getUserByCookie(req)
-
-    console.log('user', user)
 
     if (user) return {props: {}, redirect: {destination: '/profile'}}
 

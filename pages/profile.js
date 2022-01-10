@@ -27,10 +27,10 @@ const Profile = ({user}) => {
             .match({id: user.id})
 
         if (error) {
-            console.log(error)
+            console.error(error)
         }
 
-        console.log(data)
+        console.error(data)
 
         if (data && data.length) {
             setWebsite(data[0].website)
@@ -52,7 +52,7 @@ const Profile = ({user}) => {
                     `${Date.now()}_${image.name}`, image)
 
             if (error) {
-                console.log(error)
+                console.error(error)
             }
 
             if (data) {
@@ -72,7 +72,7 @@ const Profile = ({user}) => {
 
 
         if (error) {
-            console.log(error)
+            console.error(error)
         }
 
         if (data) {

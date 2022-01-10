@@ -6,7 +6,6 @@ import {useRouter, withRouter} from "next/router";
 import Message from "../components/Message"
 
 const ResetPassword = ({router}) => {
-    console.log(router.query.accessToken)
     const accessToken = router.query.accessToken
     const [newPassword, setNewPassword] = useState("");
     const [success, setSuccess] = useState(false)
@@ -25,7 +24,6 @@ const ResetPassword = ({router}) => {
         if (data) {
             setSuccess(true)
         }
-        console.log(data)
     }
 
     return (
