@@ -58,7 +58,7 @@ export const deleteFromWatchlist = async (id, movieId) => {
 export const addToWatchlist = async (id, movieId, watched, liked, title, type) => {
     const {data, error} = await supabase
         .from('watchlists')
-        .insert([
+        .upsert([
             {
                 user_id: id,
                 watched: watched,
@@ -68,6 +68,7 @@ export const addToWatchlist = async (id, movieId, watched, liked, title, type) =
                 type: type
             }
         ])
+        .match({user_id: id, movie_id: movieId})
 
     if (error) {
         console.log(error)

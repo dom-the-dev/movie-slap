@@ -33,7 +33,7 @@ const Slap = ({user}) => {
     }
 
     const handleAddToWatchList = async (movie) => {
-        const res = await addToWatchlist(user.id, movie.id, false, true, movie.title, "movie")
+        const res = await addToWatchlist(user.id, movie.id, false, false, movie.title, "movie")
 
         if (res.error) {
             console.error(res.error.message)
