@@ -36,7 +36,7 @@ const Navigation = () => {
                 {user ?
                     <>
                         <NavItem
-                            href={"/movie-slap"}
+                            href={"/slap"}
                             title={"Slap"}
                             icon={<FaRegHandRock/>}
                         />

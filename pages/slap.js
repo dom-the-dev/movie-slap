@@ -1,25 +1,38 @@
 import {useEffect, useState} from 'react';
 import {supabase} from "../lib/initSupabase";
-import {fetchRandomMovies} from "../helper/movies";
+import {fetchMovie, fetchRandomMovies, getLatestMovie} from "../helper/movies";
 import SimpleHeader from "../components/SimpleHeader";
 import TinderCard from "react-tinder-card";
-import MovieCard from "../components/MovieCard";
 import Message from "../components/Message";
 import {addToWatchlist} from "../helper/watchlist";
 import Layout from "../components/Layout";
 import SlapItem from "../components/SlapItem";
 
-const MovieSlap = ({user}) => {
-    const [loading, setLoading] = useState(true)
-    const [movies, setMovies] = useState([])
+const Slap = ({user}) => {
+    const [movie, setMovie] = useState({})
     const [message, setMessage] = useState({type: "", message: ""})
 
     useEffect(() => {
-        fetchMovies()
+        console.log('yes')
+        getNextMovie("movie")
     }, []);
 
+    async function getNextMovie(type) {
+        const {id} = await getLatestMovie(type)
+        getRandomMovie(id, type)
+    }
+
+    async function getRandomMovie(id, type) {
+        const movie = await fetchMovie(Math.floor(Math.random() * id), type)
+        console.log('movie', movie)
+        if (movie && !movie.adult) {
+            setMovie(movie)
+        } else {
+            getRandomMovie(id, type)
+        }
+    }
+
     const handleAddToWatchList = async (movie) => {
-        console.log(movie)
         const res = await addToWatchlist(user.id, movie.id, false, true, movie.title, "movie")
 
         if (res.error) {
@@ -30,30 +43,18 @@ const MovieSlap = ({user}) => {
         if (res.data) {
             setMessage({type: "success", message: "Movie added to watchlist"})
         }
+
+
+        getNextMovie("movie")
     }
 
-    async function fetchMovies() {
-        const data = await fetchRandomMovies()
+    const handleNextMovie = () => {
+        setMessage({
+            message: "",
+            type: ""
+        })
 
-        setMovies(data)
-        setLoading(false)
-    }
-
-    const renderMovies = () => {
-        return movies.map((movie, index) => (
-            <TinderCard
-                key={movie.id}
-                className={`absolute min-h-50`}
-                onSwipe={direction => direction === "right" ? handleAddToWatchList(movie) : setMessage({
-                    message: "",
-                    type: ""
-                })}
-            >
-                <SlapItem
-                    movie={movie}
-                />
-            </TinderCard>
-        ))
+        getNextMovie("movie")
     }
 
     return (
@@ -63,13 +64,21 @@ const MovieSlap = ({user}) => {
             <SimpleHeader text={"Slap your Movies"}/>
 
             <div className={`relative mx-auto max-w-sm`}>
-                {loading ? "loading movies" : movies && renderMovies()}
+                <TinderCard
+                    key={movie.id}
+                    className={`absolute min-h-50`}
+                    onSwipe={direction => direction === "right" ? handleAddToWatchList(movie) : handleNextMovie()}
+                >
+                    <SlapItem
+                        movie={movie}
+                    />
+                </TinderCard>
             </div>
         </Layout>
     );
 };
 
-export default MovieSlap;
+export default Slap;
 
 export async function getServerSideProps({req}) {
     const {user} = await supabase.auth.api.getUserByCookie(req)

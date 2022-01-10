@@ -7,7 +7,7 @@ const SlapItem = ({movie, type}) => {
 
     return (
         <div className={`relative cursor-pointer mr-5`}>
-            <div className={`rounded-3xl bg-brand flex justify-center items-center text-dark `}>
+            <div className={`rounded-3xl bg-brand flex justify-center items-center text-dark min-h-[27rem] min-w-[18rem]`}>
                 {movie.poster_path ?
                     <img
                         className={`rounded-3xl`}

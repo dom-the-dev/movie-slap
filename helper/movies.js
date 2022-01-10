@@ -58,13 +58,16 @@ export const fetchRandomMovies = async () => {
 }
 
 export const fetchMovie = async (id, type) => {
-    const {data} = await axios.get(`${MOVIE_API}/${type}/${id}?append_to_response=videos,images,credits`, {
-        params: {
-            api_key: process.env.NEXT_PUBLIC_MOVIE_API_KEY
-        }
-    })
-
-    return data
+    try {
+        const {data} = await axios.get(`${MOVIE_API}/${type}/${id}?append_to_response=videos,images,credits`, {
+            params: {
+                api_key: process.env.NEXT_PUBLIC_MOVIE_API_KEY
+            }
+        })
+        return data
+    } catch (e) {
+        console.error(e)
+    }
 }
 
 export const getMovieProvider = async (id, type) => {
@@ -78,7 +81,6 @@ export const getMovieProvider = async (id, type) => {
 }
 
 
-
 export const searchApi = async (type = "movie", query = "", page = 1) => {
     const {data} = await axios.get(`${MOVIE_API}/search/${type}`, {
         params: {
@@ -86,6 +88,16 @@ export const searchApi = async (type = "movie", query = "", page = 1) => {
             query,
             include_adult: false,
             page
+        }
+    })
+
+    return data
+}
+
+export const getLatestMovie = async (type) => {
+    const {data} = await axios.get(`${MOVIE_API}/${type}/latest`, {
+        params: {
+            api_key: process.env.NEXT_PUBLIC_MOVIE_API_KEY
         }
     })
 
