@@ -65,15 +65,20 @@ const Login = ({logout}) => {
         }
     }
 
-    async function requestRest(e) {
+    async function requestReset(e) {
         e.preventDefault()
 
-        const {data, error} = supabase.auth.api.resetPasswordForEmail(forgotEmail)
+        const {data, error} = await supabase.auth.api.resetPasswordForEmail(forgotEmail)
 
         if (error) {
             console.error(error)
+            setMessage({message: error.message ? error.message : "Something went wrong", type: "error"})
         }
-        console.log(data)
+
+        if (data) {
+            console.log(data)
+            setMessage({message: "Password reconvery link has been sent.", type: "success"})
+        }
     }
 
     return (
@@ -107,7 +112,7 @@ const Login = ({logout}) => {
 
 
                 {forgotPassword ?
-                    <form onSubmit={requestRest} className={`flex flex-col`}>
+                    <form onSubmit={requestReset} className={`flex flex-col`}>
                         <input type="email" placeholder={"Email"} onChange={(e) => setForgotEmail(e.target.value)}/>
                         <button className={`primary mt-2`} type={"submit"}>Reset Password</button>
                     </form>

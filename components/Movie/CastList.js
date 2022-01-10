@@ -20,7 +20,7 @@ const CastList = ({cast}) => {
         dots: true,
         draggable: false,
         arrows: false,
-        slidesToShow: 8,
+        slidesToShow: 6,
         slidesToScroll: 2,
         responsive: [
             {

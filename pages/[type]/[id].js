@@ -7,7 +7,6 @@ import StreamingList from "../../components/Movie/StreamingList";
 import CastList from "../../components/Movie/CastList";
 
 const Movie = ({user, movie, type}) => {
-    console.log(movie)
     const title = type === "tv" ? movie.name : movie.title
     const [streaming, setStreaming] = useState([]);
     const [cast, setCast] = useState([]);
@@ -27,9 +26,9 @@ const Movie = ({user, movie, type}) => {
     return (
         <Layout title={title}>
             <MovieHero movie={movie} type={type}/>
-            <div className={`flex justify-between items-start`}>
+            <div className={`flex flex-col-reverse md:flex-row justify-between items-start`}>
 
-                <div className={`w-2/3`}>
+                <div className={`w-full md:w-2/3`}>
                     <h4>Overview</h4>
                     {movie.overview && <p className={`mt-0`}>{movie.overview}</p>}
 
@@ -42,7 +41,7 @@ const Movie = ({user, movie, type}) => {
                 </div>
 
                 {streaming &&
-                    <div className={`w-1/4`}>
+                    <div className={`w-full md:w-1/4 mb-5 md:mb-0`}>
                         <h4>Where to stream</h4>
                         <div className="flex flex-wrap">
                             <StreamingList streams={streaming}/>
