@@ -46,23 +46,29 @@ const SignUp = ({logout}) => {
 
             <SimpleHeader text={"Sign Up"}/>
 
-            <form onSubmit={signIn} className={`flex flex-col md:w-1/2 mx-auto`}>
-                <input
-                    className={`border-2 my-1`}
-                    type="text"
-                    required
-                    placeholder={"Email"}
-                    onChange={e => setEmail(e.target.value)}
-                />
-                <input
-                    className={`border-2 my-1`}
-                    required
-                    type="password"
-                    placeholder={"Password"}
-                    onChange={e => setPassword(e.target.value)}
-                />
-                <button className={`primary mt-1`} type={"submit"}>Send</button>
-            </form>
+            {message.type === "success" ? null :
+                <form onSubmit={signIn} className={`flex flex-col md:w-1/2 mx-auto`}>
+                    <input
+                        className={`border-2 my-1`}
+                        type="text"
+                        required
+                        placeholder={"Email"}
+                        onChange={e => setEmail(e.target.value)}
+                    />
+                    <input
+                        className={`border-2 my-1`}
+                        required
+                        type="password"
+                        placeholder={"Password"}
+                        onChange={e => setPassword(e.target.value)}
+                    />
+
+                    <label htmlFor="terms">I accept the terms and conditions</label>
+                    <input type="checkbox" id="terms" name={"terms"} required/>
+
+                    <button className={`primary mt-1`} type={"submit"}>Send</button>
+                </form>
+            }
             <div className={`text-center my-5`}>
                 Do you have an account? <Link href={"/login"}><a>Login</a></Link>
             </div>
