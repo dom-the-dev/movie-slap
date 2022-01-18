@@ -3,9 +3,9 @@ import Layout from "../components/Layout";
 
 const Terms = () => {
     return (
-        <Layout title={"Terms and Conditions"}>
-         <h1>Terms and conditions</h1>
-            <p>Terms and conditions may change at any time</p>
+        <Layout title={"Privacy Policy"}>
+         <h1>Privacy Policy</h1>
+            <p>Privacy Policy</p>
         </Layout>
     );
 };
