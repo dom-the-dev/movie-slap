@@ -30,8 +30,6 @@ const Profile = ({user}) => {
             console.error(error)
         }
 
-        console.error(data)
-
         if (data && data.length) {
             setWebsite(data[0].website)
             setUsername(data[0].username)

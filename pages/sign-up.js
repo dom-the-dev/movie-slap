@@ -4,6 +4,7 @@ import Layout from "../components/Layout";
 import Message from "../components/Message";
 import SimpleHeader from "../components/SimpleHeader";
 import Link from "next/link";
+import {AiFillGoogleCircle} from "react-icons/ai";
 
 const SignUp = ({logout}) => {
     const [email, setEmail] = useState("")
@@ -40,6 +41,26 @@ const SignUp = ({logout}) => {
         }
     }
 
+
+    async function signInWithGoogle(e) {
+        e.preventDefault()
+        const {user, session, error} = await supabase.auth.signIn({
+            provider: 'google',
+        })
+
+        if (error) {
+            console.error(error)
+            setMessage({message: error.message ? error.message : "Something went wrong", type: "error"})
+        }
+
+        if (user) {
+            setTimeout(() => {
+                router.push('/profile')
+            }, 500)
+        }
+    }
+
+
     return (
         <Layout title={"Sign Up"}>
             {message && message.message && <Message message={message.message} type={message.type}/>}
@@ -70,6 +91,13 @@ const SignUp = ({logout}) => {
                     <button className={`primary mt-1`} type={"submit"}>Send</button>
                 </form>
             }
+
+            <form className={`flex flex-col md:w-1/2 mx-auto`}>
+                <button className={`secondary mt-2 flex justify-center items-center`} onClick={signInWithGoogle}>
+                    <span className={`mr-3 text-2xl`}><AiFillGoogleCircle/></span> Sign up with Google
+                </button>
+            </form>
+
             <div className={`text-center my-5`}>
                 Do you have an account? <Link href={"/login"}><a>Login</a></Link>
             </div>

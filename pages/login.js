@@ -5,6 +5,7 @@ import {supabase} from "../lib/initSupabase";
 import {useRouter} from "next/router";
 import Message from "../components/Message";
 import Link from "next/link";
+import {AiFillGoogleCircle} from "react-icons/ai";
 
 const Login = ({logout}) => {
     const router = useRouter()
@@ -79,6 +80,24 @@ const Login = ({logout}) => {
         }
     }
 
+    async function signInWithGoogle(e) {
+        e.preventDefault()
+        const {user, session, error} = await supabase.auth.signIn({
+            provider: 'google',
+        })
+
+        if (error) {
+            console.error(error)
+            setMessage({message: error.message ? error.message : "Something went wrong", type: "error"})
+        }
+
+        if (user) {
+            setTimeout(() => {
+                router.push('/profile')
+            }, 500)
+        }
+    }
+
     return (
         <Layout title={"Login"}>
             {message && message.message && <Message message={message.message} type={message.type}/>}
@@ -116,24 +135,32 @@ const Login = ({logout}) => {
                     </form>
                     :
                     !magicLink &&
-                    <form onSubmit={signIn} className={`flex flex-col`}>
-                        <input
-                            className={`border-2 my-1`}
-                            type="text"
-                            required
-                            placeholder={"Email"}
-                            onChange={e => setEmail(e.target.value)}
-                        />
-                        <input
-                            className={`border-2 my-1`}
-                            required
-                            type="password"
-                            placeholder={"Password"}
-                            onChange={e => setPassword(e.target.value)}
-                        />
-                        <button className={`primary mt-1`} type={"submit"}>Login</button>
-                    </form>
+                    <>
+                        <form onSubmit={signIn} className={`flex flex-col`}>
+                            <input
+                                className={`border-2 my-1`}
+                                type="text"
+                                required
+                                placeholder={"Email"}
+                                onChange={e => setEmail(e.target.value)}
+                            />
+                            <input
+                                className={`border-2 my-1`}
+                                required
+                                type="password"
+                                placeholder={"Password"}
+                                onChange={e => setPassword(e.target.value)}
+                            />
+                            <button className={`primary mt-1`} type={"submit"}>Login</button>
+                        </form>
+                        <form className={`flex flex-col`}>
+                            <button className={`secondary mt-2 flex justify-center items-center`} onClick={signInWithGoogle}>
+                                <span className={`mr-3 text-2xl`}><AiFillGoogleCircle/></span> Login with Google
+                            </button>
+                        </form>
+                    </>
                 }
+
                 <p className={`text-center cursor-pointer hover:underline text-brand secondary mt-10`}
                    onClick={() => setForgotPassword(!forgotPassword)}>
                     {!forgotPassword ? "Forgot Password?" : "Back to login"}
