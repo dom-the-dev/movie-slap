@@ -48,8 +48,8 @@ const WatchlistItem = ({movie, handleWatched, handleDeleteFromWatchlist}) => {
                 </Link>
                 <p className={`text-sm m-0 text-mid`}>{movie.tagline}</p>
             </td>
-            <td className={`pb-5 w-40`}>{director.name}</td>
-            <td className={`pb-5 text-xs w-40`}>{renderGenres()}</td>
+            <td className={`pb-5 w-40`}>{director && director.name ? director.name : "No data"}</td>
+            <td className={`pb-5 text-xs w-40`}>{movie.genres ? renderGenres() : "No data"}</td>
             <td className={`px-2 pb-5 w-20 text-center`}>{new Date(movie.release_date).getFullYear()}</td>
             <td className={`pb-5 text-center`}>{runtime}</td>
             <td className={`pb-5 text-center`}>

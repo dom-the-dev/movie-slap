@@ -45,6 +45,11 @@ const Navigation = () => {
                             title={"Watchlist"}
                             icon={<BsEyeglasses/>}
                         />
+                        <NavItem
+                            href={"/episode-guide"}
+                            title={"Episode Guide"}
+                            icon={<BsEyeglasses/>}
+                        />
                     </>
                     : null}
 

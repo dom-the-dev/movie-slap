@@ -6,19 +6,20 @@ export const getWatchList = async (id) => {
         .select()
         .match({user_id: id})
 
-    if (error) console.log(error)
+    if (error) console.error(error)
 
     return data
 }
 
-export const isOnWatchlist = async (id, movieId) => {
+export const getMovieFromWatchlist = async (userId, movieId) => {
+    console.log('soweit', userId, movieId)
     const {data, error} = await supabase
         .from('watchlists')
         .select()
-        .match({user_id: id, movie_id: movieId})
+        .match({user_id: userId, movie_id: movieId})
 
     if (error){
-        console.log(error)
+        console.error(error)
         throw new Error("Error checking if movie is on watchlist")
     }
 
@@ -35,7 +36,7 @@ export const updateWatchlistMovie = async (id, movieId, watched) => {
 
 
     if (error) {
-        console.log(error)
+        console.error(error)
     }
 
     return {data, error}
@@ -48,7 +49,7 @@ export const deleteFromWatchlist = async (id, movieId) => {
         .match({user_id: id, movie_id: movieId})
 
     if (error) {
-        console.log(error)
+        console.error(error)
     }
 
     return {data, error}
@@ -71,7 +72,7 @@ export const addToWatchlist = async (id, movieId, watched, liked, title, type) =
         .match({user_id: id, movie_id: movieId})
 
     if (error) {
-        console.log(error)
+        console.error(error)
     }
 
     return {data, error}

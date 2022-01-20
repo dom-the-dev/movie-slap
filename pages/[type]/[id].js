@@ -5,11 +5,12 @@ import Layout from "../../components/Layout";
 import MovieHero from "../../components/MovieHero";
 import StreamingList from "../../components/Movie/StreamingList";
 import CastList from "../../components/Movie/CastList";
+import Message from "../../components/Message";
 
 const Movie = ({user, movie, type}) => {
     const title = type === "tv" ? movie.name : movie.title
     const [streaming, setStreaming] = useState([]);
-    const [cast, setCast] = useState([]);
+    const [message, setMessage] = useState({})
 
     useEffect(() => {
         let userLang = navigator.language || navigator.userLanguage;
@@ -25,7 +26,10 @@ const Movie = ({user, movie, type}) => {
 
     return (
         <Layout title={title}>
-            <MovieHero movie={movie} type={type}/>
+            {message && message.message && <Message message={message.message} type={message.type}/>}
+
+            <MovieHero setMessage={setMessage} movie={movie} type={type} user={user}/>
+
             <div className={`flex flex-col-reverse md:flex-row justify-between items-start`}>
 
                 <div className={`w-full md:w-2/3`}>
