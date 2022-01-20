@@ -68,9 +68,10 @@ const MovieHero = ({movie, type, user, setMessage}) => {
                 {renderGenres()}
             </div>
 
-            {!user || isLoadingUserData ? null :
+            {!user ? null :
                 <div className={`mt-3`}>
-                    {type === "movie" && isOnWatchlist ?
+                    {isLoadingUserData ? null :
+                        type === "movie" && isOnWatchlist ?
                             <button className={`primary`} onClick={() => handleDeleteFromWatchlist(movie.id)}>
                                 Remove from watchlist
                             </button>

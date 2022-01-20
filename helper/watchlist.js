@@ -12,7 +12,6 @@ export const getWatchList = async (id) => {
 }
 
 export const getMovieFromWatchlist = async (userId, movieId) => {
-    console.log('soweit', userId, movieId)
     const {data, error} = await supabase
         .from('watchlists')
         .select()
