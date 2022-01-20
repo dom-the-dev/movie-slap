@@ -70,15 +70,14 @@ const MovieHero = ({movie, type, user, setMessage}) => {
 
             {!user ? null :
                 <div className={`mt-3`}>
-                    {isLoadingUserData ? null :
-                        type === "movie" && isOnWatchlist ?
+                    {type === "movie" ?
+                        isOnWatchlist ?
                             <button className={`primary`} onClick={() => handleDeleteFromWatchlist(movie.id)}>
                                 Remove from watchlist
                             </button>
                             :
                             <button className={`primary`} onClick={handleAddToWatchList}>Add to watchlist</button>
-                    }
-                    {type === "tv" && <button disabled>Coming soon </button>}
+                    : type === "tv" && <button disabled>Coming soon </button>}
                 </div>
             }
         </div>
