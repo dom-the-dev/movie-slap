@@ -24,10 +24,15 @@ function MyApp({Component, pageProps}) {
 
     return (
         <UserContextProvider supabaseClient={supabase}>
+            {/*Start cookieyes banner */}
+            <Script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/e599800c05df36d09128c5c3/script.js"/>
+
+            {/*Google AdSense*/}
             <Script async
                     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2509351820718317"
                     crossOrigin="anonymous"
             />
+            {/*Google Analytics*/}
             <Script
                 strategy="afterInteractive"
                 src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
