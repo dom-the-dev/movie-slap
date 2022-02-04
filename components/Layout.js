@@ -15,10 +15,6 @@ const Layout = ({children, title}) => {
                 <title>{title} | Movie Slap</title>
                 <meta name="description" content="Movie Application, to create and share your watchlist"/>
                 <link rel="icon" href="/favicon.ico"/>
-
-                <script async
-                        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2509351820718317"
-                        crossOrigin="anonymous"></script>
             </Head>
 
             <div>
