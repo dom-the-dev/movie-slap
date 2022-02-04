@@ -84,8 +84,8 @@ const SignUp = ({logout}) => {
                         onChange={e => setPassword(e.target.value)}
                     />
 
-                    <label htmlFor="terms">I accept the <Link href="/terms-and-conditions"><a>terms and
-                        conditions</a></Link> and the <Link href={"/privacy-policy"}><a>privacy policy</a></Link></label>
+                    <label htmlFor="terms">I accept the <Link href="/terms-of-service"><a>terms of
+                        service</a></Link> and the <Link href={"/privacy-policy"}><a>privacy policy</a></Link></label>
                     <input type="checkbox" id="terms" name={"terms"} required/>
 
                     <button className={`primary mt-1`} type={"submit"}>Send</button>
