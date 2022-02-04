@@ -4,6 +4,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import {GiHamburgerMenu} from "react-icons/gi";
 import {GoX} from "react-icons/go";
+import Script from "next/script";
 
 const Layout = ({children, title}) => {
     const [showNav, setShowNav] = useState(false)
@@ -14,6 +15,10 @@ const Layout = ({children, title}) => {
                 <title>{title} | Movie Slap</title>
                 <meta name="description" content="Movie Application, to create and share your watchlist"/>
                 <link rel="icon" href="/favicon.ico"/>
+                <Script
+                    async
+                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2509351820718317"
+                    crossOrigin="anonymous"/>
             </Head>
 
             <div>
