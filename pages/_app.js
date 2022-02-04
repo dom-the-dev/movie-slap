@@ -24,6 +24,10 @@ function MyApp({Component, pageProps}) {
 
     return (
         <UserContextProvider supabaseClient={supabase}>
+            <Script async
+                    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2509351820718317"
+                    crossOrigin="anonymous"
+            />
             <Script
                 strategy="afterInteractive"
                 src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
