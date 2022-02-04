@@ -38,7 +38,7 @@ const PrivacyPolicy = () => {
             </ul>
             <p>We may collect, hold, use, and disclose information for the following purposes, and personal information will not be further processed in a manner that is incompatible with these purposes: </p>
             <ul>
-                <li>to provide you with our platform's core features and services</li>
+                <li>to provide you with our platform&apos;s core features and services</li>
                 <li>to enable you to customize or personalize your experience of our website</li>
                 <li>to contact and communicate with you</li>
                 <li>for advertising and marketing, including to send you promotional information about our products and services and information about third parties that we consider may be of interest to you</li>
