@@ -22,7 +22,7 @@ const SlapItem = ({movie, type}) => {
                 {movie.vote_average}
             </div>
             <div
-                className={`bg-white rounded-b-3xl absolute bottom-0 font-bold h-20 pt-2 tracking-wider w-full text-semi`}>
+                className={`bg-white rounded-b-3xl absolute bottom-0 font-bold h-20 p-2 tracking-wider w-full text-semi`}>
                 {title}
             </div>
         </div>
