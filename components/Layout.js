@@ -4,7 +4,6 @@ import Header from "./Header";
 import Footer from "./Footer";
 import {GiHamburgerMenu} from "react-icons/gi";
 import {GoX} from "react-icons/go";
-import Script from "next/script";
 
 const Layout = ({children, title}) => {
     const [showNav, setShowNav] = useState(false)
